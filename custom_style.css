@@ -27,8 +27,15 @@ body {
   #site-header.hide {
     top: -53px;
   }
+  footer {
+    text-align: center;
+  }
   .nowrap {
     white-space: nowrap;
+  }
+  .nowrapi {
+    white-space: nowrap;
+    font-style: italic;
   }
 
   /* The switch - the box around the slider */
