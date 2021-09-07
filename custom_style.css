@@ -93,3 +93,8 @@ body {
   .slider.round:before {
     border-radius: 50%;
   }
+
+  .figure {
+    text-align: center;
+    color: grey;
+  }

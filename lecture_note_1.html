@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>MathJax example</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <script src="custom_scripts.js"></script>
+
+  <link rel="stylesheet" href="custom_style.css">
+</head>
+<body>
+  \(\newcommand\mymat[1]{\begin{bmatrix*}[r]#1\end{bmatrix*}}\)
+  \(\newcommand\mysys[1]{\begin{aligned}#1\end{aligned}}\)
+
+  <header id="site-header" class="center" height="52px">
+    <label>font size: </label>
+    <button id="decFontSizeButton" onclick="changeFontSize(this)">-</button>
+    <button id="incFontSizeButton" onclick="changeFontSize(this)">+</button>
+    <span>&nbsp</span>
+
+    <label>margin size: </label>
+    <button id="decMarginButton" onclick="changeMargin(this)">-</button>
+    <button id="incMarginButton" onclick="changeMargin(this)">+</button>
+    <span>&nbsp</span>
+
+    <label>go to: </label>
+    <button onclick="gotoTop()">top</button>
+    <button onclick="gotoBottom()">bottom</button>
+    <span>&nbsp</span>
+
+    <label for="bg-color">bg color: </label>
+    <select name="bg-color" id="bg-color" onchange="changeBGColor()">
+      <option value="rgba(245, 233, 222, 0.651)" selected>light brown</option>
+      <option value="rgba(245, 245, 245)">light grey</option>
+      <option value="rgba(255, 255, 255)">white</option>
+    </select>
+    <span>&nbsp</span>
+
+    <label>dark mode: </label>
+    <label class="switch">
+      <input type="checkbox">
+      <span class="slider round"></span>
+    </label>
+
+  </header>
+
+  <main id="main-content">
+    <h1>The geometry of linear equations</h1>
+    <p>
+      The fundamental problem of linear algebra is to solve \(n\) linear equations in \(n\) unknowns.<br>
+      For example:
+      \[
+        \mysys{2x-y&=0\\-x+2y&=3}
+      \]
+      In this first lecture on linear algebra we view this problem in three ways.<br>
+      The system above is two dimensional (\(n=2\)). 
+      By adding a third variable \(z\) we could expand it to three dimensions.
+    </p>
+
+    <h2>Row Picture</h2>
+    <p>
+      Plot the points that satisfy each equation. 
+      The intersection of the plots (if they do intersect) represents 
+      the solution to the system of equations.
+    </p>
+    <p>
+      Looking at Figure 1 we see that the solution to this system of equations is 
+      \(x=1, y=2\).
+    </p>
+    <p class="figure">
+      <!-- http://dlippman.imathas.com/svg2/svggrapher.htm -->
+      <img src="figures/lecture_note_1/figure_1.svg">
+      <br>
+      Figure 1. The lines 
+      <span style="color:blue">\(2x-y=0\)</span> and 
+      <span style="color:red">\(-x+2y=3\)</span> 
+      intersect at the point (1,2).
+    </p>
+    <p>
+      We plug this solution in to the original system of equations to check our work:
+      \[\mysys{2*2-2&=0\\-1+2*2&=3}\]
+    </p>
+    <p>
+      The solution to a three dimensional system of equations is the common point 
+      of the intersection of three planes (if there is one).
+    </p>
+  </main>
+</body>
+</html>
