@@ -104,17 +104,18 @@
             : content.currentStyle;     // Old IE
       var marginLeft;
       var marginRight;
+      var interval = 15;
 
       if (computedStyle) { // This will be true on nearly all browsers
           marginLeft = parseFloat(computedStyle && computedStyle.marginLeft);
           marginRight = parseFloat(computedStyle && computedStyle.marginRight);
 
           if (target == document.getElementById("incMarginButton")) {
-            marginLeft += 10;
-            marginRight += 10;
+            marginLeft += interval;
+            marginRight += interval;
           } else if (target == document.getElementById("decMarginButton")) {
-            marginLeft -= 10;
-            marginRight -= 10;
+            marginLeft -= interval;
+            marginRight -= interval;
           }
           content.style.marginLeft = marginLeft + "px";
           content.style.marginRight = marginRight + "px";
@@ -122,24 +123,108 @@
     }
   </script>
 
+  <script>
+    function changeBGColor() {
+      var selected = document.getElementById("bg-color").value;
+      document.body.style.backgroundColor = selected;
+    }
+  </script>
+
   <style>
+    body {
+      margin: 0;
+      background-color:rgba(245, 233, 222, 0.651);
+    }
+    .center {
+      display: flex;
+      /* margin: auto; */
+      /* text-align: center; */
+      justify-content: center;
+      align-items: center;
+    }
     main {
       margin-top: 52px;
       margin-left: 10%;
       margin-right: 10%;
     }
     #site-header {
-        position: fixed;
-        height: 52px;
-        background: #fff;
-        top: 0;
-        width: 100%;
-        z-index: 100;
-        transition: all .3s ease;
-        /* box-shadow: 0 1px 25px rgba(0,0,0, .1); */
+      position: fixed;
+      height: 52px;
+      background: #fff;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      transition: all .3s ease;
+      box-shadow: 0 1px 10px rgba(0,0,0, .1);
     }
     #site-header.hide {
-        top: -53px;
+      top: -53px;
+    }
+    .nowrap {
+      white-space: nowrap;
+    }
+
+    /* The switch - the box around the slider */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 30px;
+      height: 17px;
+    }
+
+    /* Hide default HTML checkbox */
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    /* The slider */
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 13px;
+      width: 13px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+      -webkit-transform: translateX(13px);
+      -ms-transform: translateX(13px);
+      transform: translateX(13px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 17px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
     }
   </style>
 </head>
@@ -147,15 +232,38 @@
   \(\newcommand\mymat[1]{\begin{bmatrix*}[r]#1\end{bmatrix*}}\)
   \(\newcommand\mysys[1]{\begin{aligned}#1\end{aligned}}\)
 
-  <header id="site-header">
+  <header id="site-header" class="center" height="52px">
     <label>font size: </label>
     <button id="decFontSizeButton" onclick="changeFontSize(this)">-</button>
     <button id="incFontSizeButton" onclick="changeFontSize(this)">+</button>
+    <span>&nbsp</span>
+
     <label>margin size: </label>
     <button id="decMarginButton" onclick="changeMargin(this)">-</button>
     <button id="incMarginButton" onclick="changeMargin(this)">+</button>
-    <hr>
+    <span>&nbsp</span>
+
+    <label>go to: </label>
+    <button onclick="gotoTop()">top</button>
+    <button onclick="gotoBottom()">bottom</button>
+    <span>&nbsp</span>
+
+    <label for="bg-color">bg color: </label>
+    <select name="bg-color" id="bg-color" onchange="changeBGColor()">
+      <option value="rgba(245, 233, 222, 0.651)" selected>light brown</option>
+      <option value="rgba(245, 245, 245)">light grey</option>
+      <option value="rgba(255, 255, 255)">white</option>
+    </select>
+    <span>&nbsp</span>
+
+    <label>dark mode: </label>
+    <label class="switch">
+      <input type="checkbox">
+      <span class="slider round"></span>
+    </label>
+
   </header>
+
   <main id="main-content">
     <h1>An overview of key ideas</h1>
     <p>
@@ -206,7 +314,7 @@
     </p>
     <p>The calculations are the same, but our perspective has changed.</p>
     <p>
-      For any input vector \(x\), the output of the operation "multiplication by \(A\)" is some vector \(b\) :
+      For any input vector \(x\), the output of the operation "multiplication by \(A\)" is some vector \(b\):
       \[
         A\mymat{1\\4\\9} = \mymat{1\\3\\5}
       \]
@@ -238,12 +346,137 @@
             b_1 + b_2 + b_3
           }
       \]
+
+      But this just says:
+      \[
+          x = \mymat{1&0&0\\1&1&0\\1&1&1}\mymat{b_1\\b_2\\b_3}
+      \]
+      or
+      \[
+          x = A^{-1}b
+      \]
+
+      If the matrix \(A\) is invertible, we can multiply on both sides by \(A^{-1}\) to find 
+      the unique solution \(x\) to \(Ax = b\). 
+      We might say that \(A\) represents a transform \(x \rightarrow b\) 
+      that has an inverse transform \(b \rightarrow x\).<br>
+      In particular, if \(b = \mymat{0\\0\\0}\), then \(x = \mymat{0\\0\\0}\)
+    </p>
+    <p>
+      The second example has the same columns \(u\) and \(v\), 
+      but replaces a column vector \(w\):
+      \[C = \mymat{1&0&-1\\-1&1&0\\0&-1&1}\]
+      Then:
+      \[
+        Cx = \mymat{1&0&-1\\-1&1&0\\0&-1&1}\mymat{x_1\\x_2\\x_3}
+        = \mymat{x_1-x_3\\x_2-x_1\\x_3-x_2}
+      \]
+      and our system of three equations in three unknowns becomes <i>circular</i>.
+    </p>
+    <p>
+      Where before \(Ax = 0\) implied \(x = 0\), 
+      there are non-zero vectors \(x\) for which \(Cx = 0\). 
+      For any vector \(x\) with \(x_1 = x_2 = x_3, Cx = 0\). 
+      This is a significant difference; 
+      we can't multiply both sides of \(Cx = 0\) by an inverse to find a non-zero solution \(x\).<br>
+    </p>
+    <p>
+      The system of equations encoded in \(Cx = b\) is:
+      \[
+        \mysys{
+          x_1 - x_3 &= b_1 \\
+          x_2 - x_1 &= b_2 \\
+          x_3 - x_2 &= b_3
+        }
+      \]
+      If we add these three equations together, we get:
+      \[0 = b_1 + b_2 + b_3\]
+      This tells us that \(Cx = b\) has a solution \(x\) 
+      only when the components of \(b\) sum to 0.<br>
+      In a physical system, this might tell us that the system is stable as long as 
+      the forces on it are balanced.
+    </p>
+
+    <h2>Subspaces</h2>
+    <p>
+      Geometrically, the columns of \(C\) lie in the same plane 
+      (they are <i>dependent</i>; the columns of A are <i>independent</i>). 
+      There are many vectors in \(\mathbb{R}^3\) which do not lie in that plane. 
+      Those vectors cannot be written as a linear combination of the columns of \(C\) 
+      and so correspond to values of \(b\) for which \(Cx = b\) has no solution \(x\). 
+      The linear combinations of the columns of \(C\) form 
+      a two dimensional subspace of \(\mathbb{R}^3\).
+    </p>
+    <p>
+      This plane of combinations of \(u\), \(v\) and \(w\) 
+      can be described as "all vectors \(Cx\)". 
+      But we know that the vectors \(b\) for which \(Cx = b\) satisfy 
+      the condition \(b_1 + b_2 + b_3 = 0\). 
+      So the plane of all combinations of \(u\) and \(v\) 
+      consists of vectors whose components sum to 0.
+    </p>
+    <p>
+      If we take all combinations of:
+      \[
+        u = \mymat{1\\-1\\0}, v = \mymat{0\\1\\-1}, w = \mymat{0\\0\\1}
+      \]
+      we get the entire space \(\mathbb{R}^3\); 
+      the equation \(Ax = b\) has a solution for every b in \(\mathbb{R}^3\). 
+      We say that \(u\), \(v\) and \(w\) form a <i>basis</i> for \(\mathbb{R}^3\).
+    </p>
+    <p>
+      A <i>basis</i> is a collection of n independent vectors in \(\mathbb{R}^n\).<br>
+      Equivalently, a basis is a collection of \(n\) vectors whose combinations cover the whole space.<br>
+      Or, a collection of vectors forms a basis whenever a matrix 
+      which has those vectors as its columns is invertible.
+    </p>
+    <p>
+      A <i>vector space</i> is a collection of vectors that is closed under linear combinations.<br>
+      A <i>subspace</i> is a vector space inside another vector space; 
+      a plane through the origin in \(\mathbb{R}^3\) is an example of a subspace. 
+      A subspace could be equal to the space it's contained in; 
+      the smallest subspace contains only the zero vector.
+    </p>
+    <p>
+      The subspaces of \(\mathbb{R}^3\) are:
+      <ul>
+        <li>the origin</li>
+        <li>a line through the origin</li>
+        <li>a plane through the origin</li>
+        <li>all of \(\mathbb{R}^n\)</li>
+      </ul>
+    </p>
+
+    <h2>Conclusion</h2>
+    <p>
+      When you look at a matrix, try to see <span class="nowrap">"what is it doing?"</span>
+    </p>
+    <p>
+      Matrices can be rectangular; we can have seven equations in three unknowns. 
+      Rectangular matrices are not invertible, 
+      but the symmetric, square matrix \(A^{T}A\) that often appears when studying 
+      rectangular matrices may be invertible.
     </p>
 
   </main>
-  <footer>
-    <hr>
-    <button>top</button>
-  </footer>
 </body>
+
+<script>
+  function gotoTop() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  }
+
+  function gotoBottom(){
+    // FIXME: it doesn't go to the bottom all the way!!
+    // NOTE: increasing font size increases body height
+    var body = document.body,
+      html = document.documentElement;
+
+    var height = Math.max( body.scrollHeight, body.offsetHeight, 
+                        html.clientHeight, html.scrollHeight, html.offsetHeight );
+    document.body.scrollTop = height;
+    document.documentElement.scrollTop = height;
+  }
+</script>
 </html>
