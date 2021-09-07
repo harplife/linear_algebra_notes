@@ -83,7 +83,7 @@
     </p>
     <p>
       We plug this solution in to the original system of equations to check our work:
-      \[\mysys{2*2-2&=0\\-1+2*2&=3}\]
+      \[\mysys{2\cdot 2-2&=0\\-1+2\cdot 2&=3}\]
     </p>
     <p>
       The solution to a three dimensional system of equations is the common point 
@@ -97,7 +97,7 @@
       \[
         x\mymat{2\\-1} + y\mymat{-1\\2} = \mymat{0\\3}
       \]
-      Given two vectors \(c\) and \(d\) and scalars \(x\) and \(y\), 
+      Given two vectors \(\overrightarrow{c}\) and \(\overrightarrow{d}\) and scalars \(x\) and \(y\), 
       the sum \(xc + yd\) is called a <span class=nowrapi>linear combination</span> 
       of c and d. Linear combinations are important throughout this course.
     </p>
@@ -109,7 +109,7 @@
     </p>
     <p class="figure">
       <img src="figures/lecture_note_1/figure_2.svg"><br>
-      <b>Figure 2.</b> A linear combination of the column vectors equals the vector \(b\).
+      <b>Figure 2.</b> A linear combination of the column vectors equals the vector \(\overrightarrow{b}\).
     </p>
 
     <h2>Matrix Picture (aka, Matrix Form)</h2>
@@ -120,9 +120,53 @@
       \[
         \mymat{2&-1\\-1&2}\mymat{x\\y}=\mymat{0\\3}
       \]
+      \[
+        Ax = b
+      \]
       The matrix \(A = \mymat{2&-1\\-1&2}\) is called the 
       <span class="nowrapi">coefficient matrix</span>.<br>
-      The vector \(x\) = \(\mymat{x\\y}\) is the vector of unknowns.<br>
+      The vector \(\overrightarrow{x}=\mymat{x\\y}\) is the vector of unknowns.<br>
+      The values on the right hand side of the equations form 
+      the vector \(\overrightarrow{b}=\mymat{0\\3}\).
+    </p>
+    <p>
+      The three dimensional matrix picture is very like the two dimensional one, 
+      except that the vectors and matrices increase in size.
+    </p>
+
+    <h2>Matrix Multiplication</h2>
+    <p>
+      How do we multiply a matrix \(A\) by a vector \(\overrightarrow{x}\)?
+      \[\mymat{2&5\\1&3}\mymat{1\\2}=?\]
+    </p>
+    <p>
+      One method is to think of the entries of \(\overrightarrow{x}\) as the coefficients 
+      of a linear combination of the column vectors of the matrix:
+      \[
+        \mysys{
+          \mymat{2&5\\1&3}\mymat{x_1\\x_2} &= x_1\mymat{2\\1}+x_2\mymat{5\\3}\\
+          &=1\mymat{2\\1}+2\mymat{5\\3}\\
+          &=\mymat{12\\7}
+        }
+      \]
+      This technique shows that \(Ax\) is a linear combination of the columns of \(A\).
+    </p>
+    <p>
+      You may also calculate the product \(Ax\) by taking the dot product of 
+      each row of \(A\) with the vector \(\overrightarrow{x}\):
+      \[
+        \mysys{
+          \mymat{2&5\\1&3}\mymat{x_1\\x_2}&=\mymat{2\cdot x_1+5\cdot x_2\\1\cdot x_1+3\cdot x_2}\\
+          &=\mymat{2\cdot 1+5\cdot 2\\1\cdot 1+3\cdot 2}\\
+          &=\mymat{12\\7}
+        }
+      \]
+    </p>
+
+    <h2>Linear Independence</h2>
+    <p>
+      In the column and matrix pictures, the right hand side of the equation is a vector \(b\).<br>
+      Given a matrix \(A\), can we solve \(Ax=b\) for every possible vector \(b\)?
     </p>
   </main>
   <footer>
