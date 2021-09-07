@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>MathJax example</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <script src="custom_scripts.js"></script>
+
+  <link rel="stylesheet" href="custom_style.css">
+</head>
+<body>
+  \(\newcommand\mymat[1]{\begin{bmatrix*}[r]#1\end{bmatrix*}}\)
+  \(\newcommand\mysys[1]{\begin{aligned}#1\end{aligned}}\)
+
+  <header id="site-header" class="center" height="52px">
+    <label>font size: </label>
+    <button id="decFontSizeButton" onclick="changeFontSize(this)">-</button>
+    <button id="incFontSizeButton" onclick="changeFontSize(this)">+</button>
+    <span>&nbsp</span>
+
+    <label>margin size: </label>
+    <button id="decMarginButton" onclick="changeMargin(this)">-</button>
+    <button id="incMarginButton" onclick="changeMargin(this)">+</button>
+    <span>&nbsp</span>
+
+    <label>go to: </label>
+    <button onclick="gotoTop()">top</button>
+    <button onclick="gotoBottom()">bottom</button>
+    <span>&nbsp</span>
+
+    <label for="bg-color">bg color: </label>
+    <select name="bg-color" id="bg-color" onchange="changeBGColor()">
+      <option value="rgba(245, 233, 222, 0.651)" selected>light brown</option>
+      <option value="rgba(245, 245, 245)">light grey</option>
+      <option value="rgba(255, 255, 255)">white</option>
+    </select>
+    <span>&nbsp</span>
+
+    <label>dark mode: </label>
+    <label class="switch">
+      <input type="checkbox">
+      <span class="slider round"></span>
+    </label>
+
+  </header>
+
+  <main id="main-content">
+    <h1>Elimination with matrices</h1>
+
+    <h2>Method of Elimination</h2>
+    <p>
+      <i>Elimination</i> is the technique most commonly used by computer software to solve 
+      systems of linear equations. It finds a solution to \(Ax=b\) 
+      whenever the matrix \(A\) is invertible.
+    </p>
+    <p>
+      Take this as an example:
+      \[A=\mymat{1&2&1\\3&8&1\\0&4&1}, b=\mymat{2\\12\\2}\]
+    </p>
+    <p>
+      The number 1 in the upper left corner of \(A\) is called the 
+      <span class="nowrapi">first pivot</span>. 
+      We recopy the first row, then multiply the numbers in it by an appropriate value 
+      (in this case 3) and subtract those values from the numbers in the second row. 
+      The first number in the second row becomes 0. We have thus 
+      <span class="nowrapi">eliminated</span> the 3 in row 2 column 1.
+      \[
+        A = \mymat{1\\1}
+      \]
+    </p>
+    <p>
+      The next step is to perform another elimination to get a 0 in row 3 column 1; 
+      here this is already the case.
+    </p>
+    <p>
+      The <span class="nowrapi">second pivot</span> is the value 2 which now appears 
+      in row 2 column 2. We find a multiplier (in this case 2) by which we multiply 
+      the second row to eliminate the 4 in row 3 column 2. 
+      The <span class="nowrapi">third pivot</span> is then the 5 now in row 3 column 3.
+    </p>
+  </main>
+
+  <footer>
+    <hr>
+    <a href="lecture_note_1.html">Lecture 1</a>
+     :: 
+    <a href="">Lecture 3</a>
+  </footer>
+</body>
+</html>
