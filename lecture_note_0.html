@@ -77,6 +77,7 @@
 
   <script>
     function changeFontSize(target) {
+      // changes font size depending on the id calling
       var content = document.getElementById("main-content");
       var computedStyle = window.getComputedStyle
             ? getComputedStyle(content) // Standards
@@ -94,7 +95,9 @@
           content.style.fontSize = fontSize + "px";
       }
     }
+
     function changeMargin(target) {
+      // changes margin size depending on the id calling
       var content = document.getElementById("main-content");
       var computedStyle = window.getComputedStyle
             ? getComputedStyle(content) // Standards
