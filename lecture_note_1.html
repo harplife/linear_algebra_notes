@@ -74,9 +74,9 @@
     </p>
     <p class="figure">
       <!-- http://dlippman.imathas.com/svg2/svggrapher.htm -->
-      <img src="figures/lecture_note_1/figure_1.svg">
-      <br>
-      Figure 1. The lines 
+      <img src="figures/lecture_note_1/figure_1.svg"><br>
+      <b>Figure 1.</b> 
+      The lines 
       <span style="color:blue">\(2x-y=0\)</span> and 
       <span style="color:red">\(-x+2y=3\)</span> 
       intersect at the point (1,2).
@@ -88,6 +88,38 @@
     <p>
       The solution to a three dimensional system of equations is the common point 
       of the intersection of three planes (if there is one).
+    </p>
+
+    <h2>Column picture</h2>
+    <p>
+      In the column picture we rewrite the system of linear equations as a single equation 
+      by turning the coefficients in the columns of the system into vectors:
+      \[
+        x\mymat{2\\-1} + y\mymat{-1\\2} = \mymat{0\\3}
+      \]
+      Given two vectors \(c\) and \(d\) and scalars \(x\) and \(y\), 
+      the sum \(xc + yd\) is called a <span class=nowrap><i>linear combination</i></span> 
+      of c and d. Linear combinations are important throughout this course.
+    </p>
+    <p>
+      Geometrically, we want to find numbers x and y so that x copies of 
+      vector \(\mymat{2\\-1}\) added to y copies of vector \(\mymat{-1\\2}\) equals 
+      the vector \(\mymat{0\\3}\). As we can see from Figure 2, \(x=1\) and \(y=2\), 
+      which agrees with the row picture in Figure 1.
+    </p>
+    <p class="figure">
+      <img src="figures/lecture_note_1/figure_2.svg"><br>
+      <b>Figure 2.</b> A linear combination of the column vectors equals the vector \(b\).
+    </p>
+
+    <h2>Matrix Picture (aka, Matrix Form)</h2>
+    <p>
+      We write the system of equations:
+      \[\mysys{2x-y&=0\\-x+2y&=3}\]
+      as a single equation by using matrices and vectors:
+      \[
+        \mymat{2&-1\\-1&2}\mymat{x\\y}=\mymat{0\\3}
+      \]
     </p>
   </main>
 </body>
