@@ -64,24 +64,200 @@
     </p>
     <p>
       The number 1 in the upper left corner of \(A\) is called the 
-      <span class="nowrapi">first pivot</span>. 
+      <span class="nowrapi" style="color:red">first pivot</span>. 
       We recopy the first row, then multiply the numbers in it by an appropriate value 
       (in this case 3) and subtract those values from the numbers in the second row. 
       The first number in the second row becomes 0. We have thus 
       <span class="nowrapi">eliminated</span> the 3 in row 2 column 1.
       \[
-        A = \mymat{1\\1}
+        A=\mymat{\color{red}1&2&1\\\color{blue}3&8&1\\0&4&1}
+        \rightarrow \mymat{\color{red}1&2&1\\\color{blue}0&2&-2\\0&4&1}
       \]
     </p>
     <p>
       The next step is to perform another elimination to get a 0 in row 3 column 1; 
       here this is already the case.
     </p>
+      \[
+        \mymat{\color{red}1&2&1\\\color{blue}0&2&-2\\\color{blue}0&4&1}
+      \]
     <p>
-      The <span class="nowrapi">second pivot</span> is the value 2 which now appears 
+      The <span class="nowrapi" style="color:red">second pivot</span> is the value 2 which now appears 
       in row 2 column 2. We find a multiplier (in this case 2) by which we multiply 
       the second row to eliminate the 4 in row 3 column 2. 
-      The <span class="nowrapi">third pivot</span> is then the 5 now in row 3 column 3.
+      The <span class="nowrapi" style="color:red">third pivot</span> is then the 5 now in row 3 column 3.
+      \[
+        \mymat{
+          \color{red}1&2&1\\
+          \color{blue}0&\color{red}2&-2\\
+          \color{blue}0&\color{blue}4&1
+        }
+        \rightarrow
+        \mymat{
+          \color{red}1&2&1\\
+          \color{blue}0&\color{red}2&-2\\
+          \color{blue}0&\color{blue}0&\color{red}5
+        }
+      \]
+    </p>
+    <p>
+      We started with an invertible matrix \(A\) and ended with an 
+      <span class="nowrapi">upper traingular</span> matrix \(U\); 
+      the lower left portion of \(U\) is filled with <span style="color:blue">zeros</span>. 
+      <span style="color:red">Pivots 1,2,5</span> are on the diagonal of \(U\).
+      \[
+        A=\mymat{1&2&1\\3&8&1\\0&4&1}
+        \rightarrow
+        \mymat{1&2&1\\0&2&-2\\0&4&1}
+        \rightarrow U =
+        \mymat{
+          \color{red}1&2&1\\
+          \color{blue}0&\color{red}2&-2\\
+          \color{blue}0&\color{blue}0&\color{red}5
+        }
+      \]
+    </p>
+    <p>
+      We repeat the multiplications and subtractions with the vector \(b=\mymat{2\\12\\2}\).<br>
+      For example, we multiply the 2 in the first position by 3 and subtract from 12 to get 
+      6 in the second position and so on.
+    </p>
+    <p>
+      When calculating by hand we can do this efficiently by 
+      <span class="nowrapi">augmenting</span> the Matrix \(A\), appending the vector \(b\) 
+      as fourth or final column.
+      \[
+        (A|b)=
+        \left[\begin{array}{rrr|r}
+          1 & 2 & 1 & 2 \\
+          3 & 8 & 1 & 12 \\
+          0 & 4 & 1 & 2
+        \end{array}\right]
+        \rightarrow
+        (U|c)=
+        \left[\begin{array}{rrr|r}
+          1 & 2 & 1 & 2 \\
+          0 & 2 & -2 & 6 \\
+          0 & 0 & 5 & -10
+        \end{array}\right]
+      \]
+    </p>
+    <p>
+      The method of elimination transforms the equation \(Ax=b\) into a new equation \(Ux=c\).<br>
+      \(U\) comes from \(A\) and \(c\) comes from \(b\). 
+    </p>
+    <p>
+      The equation \(Ux = c\) is easy to solve by 
+      <span class="nowrapi">back substitution</span>. <br>
+      In our example, we start with the bottom row.
+      \[
+        \mysys{
+          5x_3 &= -10 \\
+          x_3 &= -2
+        }
+      \]
+      We plug in \(x_3\) to the row above.
+      \[
+        \mysys{
+          2x_2 -2x_3 &= 6 \\
+          2x_2 + 4 &= 6 \\
+          2x_2 &= 2 \\
+          x_2 &= 1
+        }
+      \]
+      Finally, we plug in \(x_2\) and \(x_3\) to the first row.
+      \[
+        \mysys{
+          x_1 + 2x_2 + x_3 &= 2 \\
+          x_1 + 2 -2 &= 2 \\
+          x_1 &= 2
+        }
+      \]
+      We have found a solution \(x=\mymat{2\\1\\-2}\) for the system \(Ux=c\), 
+      which is also a solution to the original system \(Ax=b\).
+      \[
+        Ax = b \rightarrow
+        \mymat{1&2&1\\3&8&1\\0&4&1}\mymat{2\\1\\-2} = \mymat{2\\12\\2}
+      \]
+    </p>
+    <p>
+      The <span class="nowrapi">determinant</span> of \(U\) is the product of the pivots. 
+      We will see this again (in the later chapter).<br>
+      Pivots may not be 0. If there is a zero in the pivot position, 
+      we must exchange that row with one below to get a non-zero value in the pivot position. 
+      If there is a zero in the pivot position and no non-zero value below it, then 
+      the matrix \(A\) is not invertible. If that's the case, 
+      elimination cannot be used to find a unique solution to the system of equations - 
+      it doesn't exist. 
+    </p>
+
+    <h2>Elimination Matrices</h2>
+    <p>
+      The product of a matrix (3x3) and a column vector (3x1) is a column vector (3x1) 
+      that is a linear combination of the columns of the matrix.<br>
+      The product of a row (1x3) and a matrix (3x3) is a row (1x3) that is a 
+      linear combination of the rows of the matrix.
+    </p>
+    <p>
+      We can subtract 3 times row 1 of matrix \(A\) from row 2 by calculating 
+      the matrix product:
+      \[
+        \mymat{1&0&0\\-3&1&0\\0&0&1}
+        \mymat{1&2&1\\3&8&1\\0&4&1}
+        = \mymat{1&2&1\\0&2&-2\\0&4&1}
+      \]
+      The <span class="nowrapi">elimination matrix</span> used to eliminate the entry 
+      in row \(m\) column \(n\) is denoted \(E_{mn}\).<br>
+      The calculation above took us from \(A\) to \(E_{21}A\).<br>
+      The three elimination steps leading to \(U\) were \(E_{32}(E_{31}(E_{21}A))\), 
+      where \(E_{31}=I\).<br>
+      Thus \(E_{32}(E_{21}A)=U\).
+    </p>
+    <p>
+      Matrix multiplication is <span class="nowrapi">associatve</span>, so we can also 
+      write \((E_{32}E_{21})A=U\).
+    </p>
+    <p>
+      The product \(E_{32}E_{21}\) tells us how to get from \(A\) to \(U\). 
+      The <span class="nowrapi">inverse</span> of the matrix \(E_{32}E_{21}\) tells us 
+      how to get from \(U\) to \(A\).<br>
+      If we solve \(Ux=EAx=Eb\), then it is also true that \(Ax=b\). 
+      This is why the method of elimination works; all steps can be reversed.
+    </p>
+    <p>
+      A <span class="nowrapi">permutation matrix</span> (denoted by \(P\)) 
+      exchanges two rows of a matrix.<br>
+      For example,
+      \[
+        P = \mymat{0&1&0\\1&0&0\\0&0&1},
+        A = \mymat{1&2&1\\3&8&1\\0&4&1},
+        PA = \mymat{3&8&1\\1&2&1\\0&4&1}
+      \]
+      The first and second rows of the matrix \(PA\) are the second and first rows of 
+      the matrix \(A\). The matrix \(P\) is constructed by exchanging rows of the 
+      identity matrix.
+    </p>
+    <p>
+      To exchange the columns of a matrix, multiply on the right (as in \(AP\)) by 
+      a permutation matrix.
+    </p>
+    <p>
+      Note that matrix multiplication is not <span class="nowrapi">commutative</span>.
+      \[PA \not= AP\]
+    </p>
+
+    <h2>Inverses</h2>
+    <p>
+      We have a matrix:
+      \[
+        E_{21} = \mymat{1&0&0\\-3&1&0\\0&0&1}
+      \]
+      which subtracts 3 times row 1 from row 2. To "undo" this operation, we must add 3 times 
+      row 1 to row 2 using the inverse matrix:
+      \[
+        E^{-1}_{21} = \mymat{1&0&0\\3&1&0\\0&0&1}
+      \]
+      In fact, \(E^{-1}_{21}E_{21} = I\).
     </p>
   </main>
 
