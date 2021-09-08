@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>MathJax example</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <script src="custom_scripts.js"></script>
+
+  <link rel="stylesheet" href="custom_style.css">
+</head>
+<body>
+  \(\newcommand\mymat[1]{\begin{bmatrix*}[r]#1\end{bmatrix*}}\)
+  \(\newcommand\mysys[1]{\begin{aligned}#1\end{aligned}}\)
+
+  <header id="site-header" class="center" height="52px">
+    <label>font size: </label>
+    <button id="decFontSizeButton" onclick="changeFontSize(this)">-</button>
+    <button id="incFontSizeButton" onclick="changeFontSize(this)">+</button>
+    <span>&nbsp</span>
+
+    <label>margin size: </label>
+    <button id="decMarginButton" onclick="changeMargin(this)">-</button>
+    <button id="incMarginButton" onclick="changeMargin(this)">+</button>
+    <span>&nbsp</span>
+
+    <label>go to: </label>
+    <button onclick="gotoTop()">top</button>
+    <button onclick="gotoBottom()">bottom</button>
+    <span>&nbsp</span>
+
+    <label for="bg-color">bg color: </label>
+    <select name="bg-color" id="bg-color" onchange="changeBGColor()">
+      <option value="rgba(245, 233, 222, 0.651)" selected>light brown</option>
+      <option value="rgba(245, 245, 245)">light grey</option>
+      <option value="rgba(255, 255, 255)">white</option>
+    </select>
+    <span>&nbsp</span>
+
+    <label>dark mode: </label>
+    <label class="switch">
+      <input type="checkbox">
+      <span class="slider round"></span>
+    </label>
+
+  </header>
+
+  <main id="main-content">
+    <h1>Multiplication and inverse matrices</h1>
+
+    <h2>Matrix Multiplication</h2>
+    <p>
+      We discuss four different ways of thinking about the product of two matrices, 
+      \(AB = C\).
+      If \(A\) is an \(m \times n\) matrix and \(B\) is an \(n \times p\) matrix, 
+      then \(C\) is an \(m \times p\) matrix. We use \(c_{ij}\) to denote the entry 
+      in row \(i\) and column \(j\) of matrix \(C\).
+    </p>
+    <h3>Standard (row times column)</h3>
+    <p>
+      The standard way of describing a matrix product is to say that \(c_{ij}\) equals the 
+      dot product of row \(i\) of matrix \(A\) and column \(j\) of matrix \(B\).<br>
+      In other words,
+      \[
+        c_{ij} = \sum_{k=1}^{n}a_{ik}b_{kj}
+      \]
+    </p>
+
+    <h3>Columns</h3>
+    <p>
+      The product of matrix \(A\) and column \(j\) of matrix \(B\) equals column \(j\) of 
+      matrix \(C\). This tells us that the columns of \(C\) are combinations of columns of 
+      \(A\).
+    </p>
+
+    <h3>Rows</h3>
+    <p>
+      The product of row \(i\) of matrix \(A\) and matrix \(B\) equals row \(i\) of 
+      matrix \(C\). So the rows of \(C\) are combinations of rows of \(B\).
+    </p>
+
+    <h3>Column times row</h3>
+    <p>
+      A column of \(A\) is an \(m \times 1\) vector and a row of \(B\) is a \(1 \times p\) 
+      vector.<br>
+      Their product is a matrix:
+      \[
+        \mymat{2\\3\\4}\mymat{1&6} = \mymat{2&12\\3&18\\4&24}
+      \]
+      The columns of this matrix are multiples of the column of \(A\) and the rows are 
+      multiples of the row of \(B\). If we think of the entries in these rows as the 
+      coordinates (2,12) or (3,18) or (4,24), then all these points lie on the same line; 
+      similarly for the two column vectors.
+    </p>
+    <p>
+      Later we'll see that this is equivalent to saying that the 
+      <span class="nowrapi">row space</span> of this matrix is a single line, as is the 
+      <span class="nowrapi">column space</span>.
+    </p>
+    <p>
+      The product of \(A\) and \(B\) is the sum of these "column times row" matrices:
+      \[
+        AB = \sum_{k=1}^{n}\mymat{a_{1k} \\ \vdots \\ a_{mk}}\mymat{b_{k1}&\cdots&b_{kn}}
+      \]
+    </p>
+
+    <h2>Blocks</h2>
+    <p>
+      If we subdivide \(A\) and \(B\) into blocks that match properly, we can write 
+      the product \(AB=C\) in terms of products of the blocks:
+      \[
+        \mysys{
+          \mymat{A_1&A_2\\A_3&A_4}\mymat{B_1&B_2\\B_3&B_4}
+          &= \mymat{
+            A_1B_1+A_2B_3&A_1B_2+A_2B_4 \\
+            A_3B_1+A_4B_3&A_3B_2+A_4B_4
+          } \\
+          &= \mymat{C_1&C_2\\C_3&C_4}
+        }
+      \]
+    </p>
+
+    <h2>Inverses</h2>
+
+    <h3>Square Matrices</h3>
+    <p>
+      If \(A\) is a square matrix, the most important question you can ask about it is whether
+      it has an inverse \(A^{-1}\). If it does, then \(A^{-1}A=I=AA^{-1}\) and we say that 
+      \(A\) is <i>invertible</i> or <i>nonsingular</i>.
+    </p>
+    <p>
+      If \(A\) is <i>singular</i> - i.e. \(A\) does not have an inverse - its determinant is 
+      zero and we can find some non-zero vector \(x\) for which \(Ax=0\). For example:
+      \[
+        \mymat{1&3\\2&6}\mymat{3\\-1}=\mymat{0\\0}
+      \]
+      In this example, three times the first column minus one times the second column equals 
+      the zero vector; the two column vectors lie on the same line.
+    </p>
+
+    <h3>Gauss-Jordan Elimination</h3>
+    <p>
+      Finding the inverse of a matrix is closely related to solving systems of linear equations:
+      \[
+        \mysys{
+          \mymat{1&3\\2&7}\mymat{a&b\\c&d} &=\mymat{1&0\\0&1}\\
+          AA^{-1} &=I
+        }
+      \]
+      The equation above can be read as saying "\(A\) times column \(j\) of \(A^{-1}\) equals column \(j\) of 
+      the identity matrix". This is just a special form of the equation \(Ax=b\).
+    </p>
+    <p>
+      We can use the method of elimination to solve two or more linear equations at the 
+      same time.<br>
+      First, augment the matrix with the whole identity matrix \(I\).
+      \[
+        (A|I) = 
+        \left[\begin{array}{cc|cc}
+        1 & 3 & 1 & 0 \\
+        2 & 7 & 0 & 1
+        \end{array}\right]
+      \]
+      Then, use Guassian elimination (on the augmented matrix) to convert the original matrix 
+      to upper triangular form.
+      \[
+        \left[\begin{array}{cc|cc}
+        1 & 3 & 1 & 0 \\
+        2 & 7 & 0 & 1
+        \end{array}\right]
+        \rightarrow
+        \left[\begin{array}{cc|cc}
+          \color{red}1 & 3 & 1 & 0 \\
+          \color{blue}0 & \color{red}1 & -2 & 1
+        \end{array}\right]
+      \]
+      Lastly, go on to use Jordan's idea of eliminating entries in the upper right portion 
+      of the original matrix.
+      \[
+        \left[\begin{array}{cc|cc}
+        \color{red}1 & 3 & 1 & 0 \\
+        \color{blue}0 & \color{red}1 & -2 & 1
+        \end{array}\right]
+        \rightarrow
+        \left[\begin{array}{cc|cc}
+          \color{red}1 & \color{blue}0 & 7 & -3 \\
+          \color{blue}0 & \color{red}1 & -2 & 1
+        \end{array}\right]
+      \]
+      Thus,
+      \[
+        A^{-1} = \mymat{7&-3\\-2&1}
+      \]
+    </p>
+    <h3>Editor's Note</h3>
+    <p>
+      We can write the results of the elimination method as the product of a 
+      number of elimination matrices \(E_{ij}\) with the matrix \(A\):
+      \[
+        E_{21}E_{12}(A|I) = (I|A^{-1})
+      \]
+      With \(E_{21}=\mymat{1&0\\-2&1}\) and \(E_{12}=\mymat{1&-3\\0&1}\), 
+      the product of all the \(E_{ij}\) is:
+      \[
+        E = \mymat{1&-2\\-1&7}
+      \]
+      In other words:
+      \[
+        \mysys{
+          \mymat{1&-2\\-1&7}\mymat{1&3\\2&7} &= \mymat{1&0\\0&1}\\
+          EA &= I 
+        }
+      \]
+    </p>
+    <p>
+      Letting \(E\) be the product of all the \(E_{ij}\), we write the result of this 
+      Gauss-Jordan elimination using block matrices:
+      \[
+        E(A|I)=(I|E)
+      \] 
+      But if \(EA=I\), then \(E=A^{-1}\)
+    </p>
+  </main>
+
+  <footer>
+    <hr>
+    <a href="lecture_note_2.html">Lecture 2</a>
+     :: 
+    <a href="">Lecture 4</a>
+  </footer>
+</body>
+</html>
