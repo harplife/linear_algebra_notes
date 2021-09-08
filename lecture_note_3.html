@@ -201,28 +201,24 @@
       We can write the results of the elimination method as the product of a 
       number of elimination matrices \(E_{ij}\) with the matrix \(A\):
       \[
-        E_{21}E_{12}(A|I) = (I|A^{-1})
+        E_{12}E_{21}(A|I) = (I|A^{-1})
       \]
-      With \(E_{21}=\mymat{1&0\\-2&1}\) and \(E_{12}=\mymat{1&-3\\0&1}\), 
-      the product of all the \(E_{ij}\) is:
+      Letting \(E\) be the product of all the \(E_{ij}\):
       \[
-        E = \mymat{1&-2\\-1&7}
+        E(A|I) = (I|A^{-1})
       \]
-      In other words:
+      The product of \(E_{12}=\mymat{1&-3\\0&1}\) and \(E_{21}=\mymat{1&0\\-2&1}\) is 
+      \(
+        E = \mymat{7&-3\\-2&1}
+      \), which is the same as \(A^{-1}\);
       \[
-        \mysys{
-          \mymat{1&-2\\-1&7}\mymat{1&3\\2&7} &= \mymat{1&0\\0&1}\\
-          EA &= I 
-        }
+        E = A^{-1} = \mymat{7&-3\\-2&1}
       \]
-    </p>
-    <p>
-      Letting \(E\) be the product of all the \(E_{ij}\), we write the result of this 
-      Gauss-Jordan elimination using block matrices:
+      So we can rewrite the results of the elimination:
       \[
-        E(A|I)=(I|E)
-      \] 
-      But if \(EA=I\), then \(E=A^{-1}\)
+        E(A|I) = (I|E)
+      \]
+      This means, if \(EA=I\), then \(E=A^{-1}\).
     </p>
   </main>
 
