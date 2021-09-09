@@ -162,28 +162,28 @@ function jumpNext() {
   window.scroll(top['x'], top['y'])
 }
 
-var jumpValue = 5; // user setting to adjust this
-
 function jumpUp() {
+  var jumpValue = window.innerHeight; // user setting to adjust this
   var content = document.getElementById("main-content");
   var computedStyle = window.getComputedStyle
         ? getComputedStyle(content) // Standards
         : content.currentStyle;     // Old IE
   var fontSize = parseFloat(computedStyle && computedStyle.fontSize);
 
-  document.body.scrollTop = document.body.scrollTop - fontSize*jumpValue;
-  document.documentElement.scrollTop = document.documentElement.scrollTop - fontSize*jumpValue;
+  document.body.scrollTop = document.body.scrollTop - jumpValue + fontSize*2;
+  document.documentElement.scrollTop = document.documentElement.scrollTop - jumpValue + fontSize*2;
 }
 
 function jumpDown() {
+  var jumpValue = window.innerHeight; // user setting to adjust this
   var content = document.getElementById("main-content");
   var computedStyle = window.getComputedStyle
         ? getComputedStyle(content) // Standards
         : content.currentStyle;     // Old IE
   var fontSize = parseFloat(computedStyle && computedStyle.fontSize);
 
-  document.body.scrollTop = document.body.scrollTop + fontSize*jumpValue;
-  document.documentElement.scrollTop = document.documentElement.scrollTop + fontSize*jumpValue;
+  document.body.scrollTop = document.body.scrollTop + jumpValue - fontSize*2;
+  document.documentElement.scrollTop = document.documentElement.scrollTop + jumpValue - fontSize*2;
 }
 
 function navigation(evt){
