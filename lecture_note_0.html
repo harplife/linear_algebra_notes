@@ -12,6 +12,8 @@
   <script src="custom_scripts.js"></script>
 
   <link rel="stylesheet" href="custom_style.css">
+  <!-- w3.css for the modal popup -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
   \(\newcommand\mymat[1]{\begin{bmatrix*}[r]#1\end{bmatrix*}}\)
@@ -245,14 +247,27 @@
       rectangular matrices may be invertible.
     </p>
 
-    <h1>Video Lecture</h1>
-    <p style="color:red;">
-      TODO: implement video lectures as a modal popup?<br>
-      TODO: timestamp for each section? Just like clicking on the timestamp in the comments.
-    </p>
-    <div class="video-container">
-      <iframe width="400" height="225" src="https://www.youtube.com/embed/J7DzL2_Na80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="w3-container">
+      <h1>Video Lecture</h1>
+      <p style="color:red;">
+        TODO: implement video lectures as a modal popup?<br>
+        TODO: timestamp for each section? Just like clicking on the timestamp in the comments.
+      </p>
+      <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Open Modal</button>
+
+      <div id="id01" class="w3-modal">
+        <div class="w3-modal-content">
+          <div class="w3-container">
+            <h1>Video Lecture</h1>
+            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+            <div class="video-container">
+              <iframe width="400" height="225" src="https://www.youtube.com/embed/J7DzL2_Na80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
   </main>
 
   <footer>
