@@ -70,16 +70,17 @@ function changeFontSize(target) {
         ? getComputedStyle(content) // Standards
         : content.currentStyle;     // Old IE
   var fontSize;
+  var increment = 5;
 
   if (computedStyle) { // This will be true on nearly all browsers
       fontSize = parseFloat(computedStyle && computedStyle.fontSize);
 
       if (target == document.getElementById("incFontSizeButton")) {
-        fontSize += 5;
+        fontSize += increment;
       } else if (target == document.getElementById("decFontSizeButton")) {
-        fontSize -= 5;
+        fontSize -= increment;
       }
-      content.style.fontSize = fontSize + "px";
+      content.style.fontSize = fontSize + 'px';
   }
 }
 

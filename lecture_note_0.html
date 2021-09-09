@@ -12,7 +12,11 @@
   <script src="custom_scripts.js"></script>
 
   <link rel="stylesheet" href="custom_style.css">
-  <!-- w3.css for the modal popup -->
+  <!-- 
+    w3.css for the modal popup.
+    Note that this stupid thing breaks the font-size increase for h1,h2,h3,
+    because it sets the font-size to 36.
+  -->
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
@@ -25,10 +29,10 @@
     <button id="incFontSizeButton" onclick="changeFontSize(this)">+</button>
     <span>&nbsp</span>
 
-    <label>margin size: </label>
+    <!-- <label>margin size: </label>
     <button id="decMarginButton" onclick="changeMargin(this)">-</button>
     <button id="incMarginButton" onclick="changeMargin(this)">+</button>
-    <span>&nbsp</span>
+    <span>&nbsp</span> -->
 
     <label>go to: </label>
     <button onclick="gotoTop()">top</button>
