@@ -13,6 +13,7 @@ this is linear algebra notes in HTML format.
 7. Language select
 8. MathJax equations max size
 9. Save last settings
+10. Figure card mouseover FOCUS effect(highlight/dim)
 
 ## plot linear equations
 

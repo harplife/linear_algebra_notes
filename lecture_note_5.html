@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>MathJax example</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <script src="custom_scripts.js"></script>
+
+  <link rel="stylesheet" href="custom_style.css">
+</head>
+<body>
+  \(\newcommand\mymat[1]{\begin{bmatrix*}[r]#1\end{bmatrix*}}\)
+  \(\newcommand\mysys[1]{\begin{aligned}#1\end{aligned}}\)
+
+  <header id="site-header" class="center" height="52px">
+    <label>font size: </label>
+    <button id="decFontSizeButton" onclick="changeFontSize(this)">-</button>
+    <button id="incFontSizeButton" onclick="changeFontSize(this)">+</button>
+    <span>&nbsp</span>
+
+    <label>margin size: </label>
+    <button id="decMarginButton" onclick="changeMargin(this)">-</button>
+    <button id="incMarginButton" onclick="changeMargin(this)">+</button>
+    <span>&nbsp</span>
+
+    <label>go to: </label>
+    <button onclick="gotoTop()">top</button>
+    <button onclick="gotoBottom()">bottom</button>
+    <span>&nbsp</span>
+
+    <label for="bg-color">bg color: </label>
+    <select name="bg-color" id="bg-color" onchange="changeBGColor()">
+      <option value="rgba(245, 233, 222, 0.651)" selected>light brown</option>
+      <option value="rgba(245, 245, 245)">light grey</option>
+      <option value="rgba(255, 255, 255)">white</option>
+    </select>
+    <span>&nbsp</span>
+
+    <label>dark mode: </label>
+    <label class="switch">
+      <input type="checkbox">
+      <span class="slider round"></span>
+    </label>
+  </header>
+
+  <main id="main-content">
+    <h1>Transposes, permutations, spaces \(R^n\)</h1>
+  </main>
+
+  <footer>
+    <hr>
+    <select onchange="location = this.value">
+      <option value="lecture_note_0.html">Overview</option>
+      <option value="lecture_note_1.html">Lecture 1</option>
+      <option value="lecture_note_2.html">Lecture 2</option>
+      <option value="lecture_note_3.html">Lecture 3</option>
+      <option value="lecture_note_4.html">Lecture 4</option>
+      <option value="lecture_note_5.html" selected>Lecture 5</option>
+    </select>
+  </footer>
+
+</body>
+</html>
