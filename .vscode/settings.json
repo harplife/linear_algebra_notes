@@ -3,6 +3,7 @@
         "allowfullscreen",
         "bmatrix",
         "mathbb",
+        "mathtools",
         "mymat",
         "mysys",
         "newcommand",
