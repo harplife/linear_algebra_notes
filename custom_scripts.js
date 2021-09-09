@@ -130,3 +130,79 @@ function gotoBottom(){
   document.body.scrollTop = height;
   document.documentElement.scrollTop = height;
 }
+
+function scrollDown() {
+  var content = document.getElementById("main-content");
+  var computedStyle = window.getComputedStyle
+        ? getComputedStyle(content) // Standards
+        : content.currentStyle;     // Old IE
+  var fontSize = parseFloat(computedStyle && computedStyle.fontSize);
+
+  document.body.scrollTop = document.body.scrollTop + fontSize;
+  document.documentElement.scrollTop = document.documentElement.scrollTop + fontSize;
+}
+
+function scrollUp() {
+  var content = document.getElementById("main-content");
+  var computedStyle = window.getComputedStyle
+        ? getComputedStyle(content) // Standards
+        : content.currentStyle;     // Old IE
+  var fontSize = parseFloat(computedStyle && computedStyle.fontSize);
+
+  document.body.scrollTop = document.body.scrollTop - fontSize;
+  document.documentElement.scrollTop = document.documentElement.scrollTop - fontSize;
+}
+
+function jumpNext() {
+  // jump to next element?
+  var content = document.getElementById("main-content");
+  var sections = content.children;
+  const random = Math.floor(Math.random() * sections.length);
+  var top = sections[random].getBoundingClientRect();
+  window.scroll(top['x'], top['y'])
+}
+
+var jumpValue = 5; // user setting to adjust this
+
+function jumpUp() {
+  var content = document.getElementById("main-content");
+  var computedStyle = window.getComputedStyle
+        ? getComputedStyle(content) // Standards
+        : content.currentStyle;     // Old IE
+  var fontSize = parseFloat(computedStyle && computedStyle.fontSize);
+
+  document.body.scrollTop = document.body.scrollTop - fontSize*jumpValue;
+  document.documentElement.scrollTop = document.documentElement.scrollTop - fontSize*jumpValue;
+}
+
+function jumpDown() {
+  var content = document.getElementById("main-content");
+  var computedStyle = window.getComputedStyle
+        ? getComputedStyle(content) // Standards
+        : content.currentStyle;     // Old IE
+  var fontSize = parseFloat(computedStyle && computedStyle.fontSize);
+
+  document.body.scrollTop = document.body.scrollTop + fontSize*jumpValue;
+  document.documentElement.scrollTop = document.documentElement.scrollTop + fontSize*jumpValue;
+}
+
+function navigation(evt){
+  key = evt.keyCode;
+  console.log(key);
+  // console.log(String.fromCharCode(evt.keyCode));
+  if (key==84){
+    gotoTop();
+  } else if (key==66) {
+    gotoBottom();
+  } else if (key==87) {
+    scrollUp();
+  } else if (key==83) {
+    scrollDown();
+  } else if (key==65) {
+    jumpUp();
+  } else if (key==68) {
+    jumpDown();
+  }
+}
+
+document.onkeydown = navigation;
