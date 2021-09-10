@@ -75,7 +75,7 @@
         <!-- <figcaption>This is generally <span style="color:red;">not a subspace</span>.</figcaption> -->
       </blockquote>
     </figure>
-    
+
     <p>
       The intersection \(S \cap T\) of two subspaces \(S\) and \(T\) is a subspace. 
       To prove this, use the fact that both \(S\) and \(T\) are closed under linear 
@@ -160,13 +160,48 @@
       the nullspace \(N(A)\) consists of all multiples of \(\mymat{1\\1\\-1}\); 
       column 1 plus column 2 minus column 3 equals the zero vector. This nullspace is a line 
       in \(\mathbb{R}^3\).
-      <!-- INSERT a figure here, maybe. a line in 3d space. -->
     </p>
+
+    <figure>
+      <blockquote>
+        <p class="figure"><img src="figures/lecture_note_6/nullspace_line_in_r3.PNG"></p>
+        <figcaption>
+          <p>
+          <b>Figure 1.</b> 
+            The line is a subspace because it goes through the origin.
+          </p>
+        </figcaption>
+      </blockquote>
+    </figure>
 
     <h2>Other values of \(b\)</h2>
     <p>
-
+      The solutions to the equation:
+      \[
+        \mymat{
+          1&1&2\\
+          2&1&3\\
+          3&1&4\\
+          4&1&5
+        } \mymat{x_1\\x_2\\x_3} = \mymat{1\\2\\3\\4}
+      \]
+      do not form a subspace. The zero vector is not a solution to this equation. 
+      The set of solutions forms a line in \(\mathbb{R}^3\) that passes through the points 
+      \(\mymat{1\\0\\0}\) and \(\mymat{0\\-1\\1}\) but not \(\mymat{0\\0\\0}\).
     </p>
+
+    <figure>
+      <blockquote>
+        <p class="figure"><img src="figures/lecture_note_6/not_subspace.PNG"></p>
+        <figcaption>
+          <p>
+          <b>Figure 2.</b> 
+            The line is not a subspace because it does not go through the origin.
+          </p>
+        </figcaption>
+      </blockquote>
+    </figure>
+
   </main>
 
   <footer>

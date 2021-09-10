@@ -31,6 +31,14 @@ main {
 }
 figure {
   background-color: rgba(0,0,0,0.1);
+  /* margin: 0px; */
+}
+figure p {
+  margin: 0px;
+}
+blockquote {
+  margin: 0px;
+  padding: 10px;
 }
 #site-header {
   position: fixed;
