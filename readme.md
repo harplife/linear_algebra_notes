@@ -15,6 +15,11 @@ this is linear algebra notes in HTML format.
 9. Save last settings
 10. Figure card mouseover FOCUS effect(highlight/dim)
 
+## References
+
+1. Ratsgo님의 블로그 글 - [link](https://ratsgo.github.io/linear%20algebra/2017/05/20/spaces/)
+2. Gilbert Strang 강의 잘 정리해준 블로그 - [link](https://twlab.tistory.com/)
+
 ## plot linear equations
 
 - online tool to make svg of linear equation plot [(link)](http://dlippman.imathas.com/svg2/svggrapher.htm)
