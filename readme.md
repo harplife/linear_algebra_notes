@@ -14,6 +14,8 @@ this is linear algebra notes in HTML format.
 8. MathJax equations max size
 9. Save last settings
 10. Figure card mouseover FOCUS effect(highlight/dim)
+11. Make a server with Python
+12. Deploy it on AWS
 
 ## References
 
