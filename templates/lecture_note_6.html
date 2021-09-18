@@ -1,0 +1,163 @@
+{% extends "common/layout.html" %}
+
+{% block title %}An overview of key ideas{% endblock %}
+
+{% block main %}
+
+<main id="main-content">
+  <h1>Column space and nullspace</h1>
+  <p>
+    In this lecture we continue to study subspaces, particularly the column space and 
+    nullspace of a matrix.
+  </p>
+
+  <h2>Review of subspaces</h2>
+  <p>
+    A vector space is a collection of vectors which is closed under linear combinations. 
+    In other words, for any two vectors \(v\) and \(w\) in the space and any two real 
+    numbers \(c\) and \(d\), the vector \(cv+dw\) is also in the vector space. 
+    A subspace is a vector space contained inside a vector space.
+  </p>
+  <p>
+    A plane \(P\) containing \(\mymat{0\\0\\0}\) and a line \(L\) containing 
+    \(\mymat{0\\0\\0}\) are both subspaces of \(\mathbb{R}^3\). The union \(P \cup L\) of 
+    those two subspaces is generally not a subspace, because the sum of a vector in \(P\) 
+    and a vector in \(L\) is probably not contained in \(P \cup L\). 
+  </p>
+
+  <figure>
+    <blockquote>
+      <p>\(P \cup L\) = all vectors in \(P\) or \(L\) or both.</p>
+      <!-- <figcaption>This is generally <span style="color:red;">not a subspace</span>.</figcaption> -->
+    </blockquote>
+  </figure>
+
+  <p>
+    The intersection \(P \cap L\) is a subspace. 
+    To prove this, use the fact that both \(P\) and \(L\) are closed under linear 
+    combinations to show that their intersection is also closed under linear combinations.
+  </p>
+
+  <figure>
+    <blockquote>
+      <p>\(P \cap L\) = all vectors in \(P\) and \(L\).</p>
+      <!-- <figcaption>This is a subspace.</figcaption> -->
+    </blockquote>
+  </figure>
+
+  <h2>Column space of \(A\)</h2>
+  <p>
+    The <span class="nowrapi">column space</span> of a matrix \(A\) is the vector space 
+    made up of all linear combinations of the columns of \(A\).
+  </p>
+
+  <h3>Solving \(Ax=b\)</h3>
+  <p>
+    Given a matrix \(A\), for what vectors \(b\) does \(Ax=b\) have a solution \(x\)?
+    \[
+      A = \mymat{
+        1&1&2\\
+        2&1&3\\
+        3&1&4\\
+        4&1&5
+      }
+    \]
+    \(Ax=b\) does not have a solution for every choice of \(b\) because solving 
+    \(Ax=b\) is equivalent to solving four linear equations in three unknowns. 
+    If there is a solution \(x\) to \(Ax=b\), then \(b\) must be a linear combination 
+    of the columns of \(A\). Only three columns cannot fill the entire four dimensional 
+    vector space - some vectors \(b\) cannot be expressed as linear combinations of 
+    columns of \(A\).
+  </p>
+  <p>
+    Big question: what \(b\)'s allow \(Ax=b\) to be solved?
+  </p>
+  <p>
+    A useful approach is to choose \(x\) and find the vector \(b=Ax\) corresponding 
+    to that solution. The components of \(x\) are just the coefficients in a linear 
+    combination of columns of \(A\).
+  </p>
+  <p>
+    The system of linear equations \(Ax=b\) is <i>solvable</i> exactly when \(b\) is a 
+    vector in the <span class="nowrapi">column space</span> of \(A\).
+  </p>
+  <p>
+    For our example matrix \(A\), what can we say about the column space of \(A\)? 
+    Are the columns of \(A\) <i>independent</i>? In other words, does each column 
+    contribute something new to the subspace?
+  </p>
+  <p>
+    The third column of \(A\) is the sum of the first two columns, so does not add anything 
+    to the subspace. The column space of our matrix \(A\) is a two dimensional subspace of 
+    \(\mathbb{R}^4\).
+  </p>
+
+  <h2>Nullspace of \(A\)</h2>
+  <p>
+    The <i>nullspace</i> of a matrix \(A\) is the collection of all 
+    solutions \(x=\mymat{x_1\\x_2\\x_3}\) to the equation \(Ax=0\).
+  </p>
+  <p>
+    The column space of the matrix in our example was a subspace of \(\mathbb{R}^4\). 
+    The nullspace of \(A\) is a subspace of \(\mathbb{R}^3\). To see that it's a 
+    vector space, check that any sum or multiple of solutions to \(Ax=0\) is also a solution: 
+    \(A(x_1+x_2)=Ax_1+Ax_2=0+0\) and \(A(cx)=cAx=c(0)\).
+  </p>
+  <p>
+    In the example:
+    \[
+      \mymat{
+        1&1&2\\
+        2&1&3\\
+        3&1&4\\
+        4&1&5
+      } \mymat{x_1\\x_2\\x_3} = \mymat{0\\0\\0\\0}
+    \]
+    the nullspace \(N(A)\) consists of all multiples of \(\mymat{1\\1\\-1}\); 
+    column 1 plus column 2 minus column 3 equals the zero vector. This nullspace is a line 
+    in \(\mathbb{R}^3\).
+  </p>
+
+  <figure>
+    <blockquote>
+      <p class="figure"><img src="{{ url_for('static',filename='figures/lecture_note_6/nullspace_line_in_r3.PNG') }}"></p>
+      <figcaption>
+        <p>
+        <b>Figure 1.</b> 
+          The line is a subspace because it goes through the origin.
+        </p>
+      </figcaption>
+    </blockquote>
+  </figure>
+
+  <h2>Other values of \(b\)</h2>
+  <p>
+    The solutions to the equation:
+    \[
+      \mymat{
+        1&1&2\\
+        2&1&3\\
+        3&1&4\\
+        4&1&5
+      } \mymat{x_1\\x_2\\x_3} = \mymat{1\\2\\3\\4}
+    \]
+    do not form a subspace. The zero vector is not a solution to this equation. 
+    The set of solutions forms a line in \(\mathbb{R}^3\) that passes through the points 
+    \(\mymat{1\\0\\0}\) and \(\mymat{0\\-1\\1}\) but not \(\mymat{0\\0\\0}\).
+  </p>
+
+  <figure>
+    <blockquote>
+      <p class="figure"><img src="{{ url_for('static',filename='figures/lecture_note_6/not_subspace.PNG') }}"></p>
+      <figcaption>
+        <p>
+        <b>Figure 2.</b> 
+          The line is not a subspace because it does not go through the origin.
+        </p>
+      </figcaption>
+    </blockquote>
+  </figure>
+
+</main>
+
+{% endblock %}

@@ -1,11 +1,4 @@
-// http://docs.mathjax.org/en/latest/input/tex/extensions.html
-window.MathJax = {
-  // ams and mathtools allow for aligning matrices
-  loader: {load: [
-    '[tex]/ams', '[tex]/mathtools'
-  ]},
-  tex: {packages: {'[+]': ['ams', 'mathtools']}}
-};
+
 
 // https://codingreflections.com/hide-header-on-scroll-down/
 (function(){

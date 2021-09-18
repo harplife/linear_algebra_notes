@@ -6,16 +6,19 @@ this is linear algebra notes in HTML format.
 
 1. Video Lecture modal popup
 2. Video Lecture timestamp for each section
-3. Paragraph mouseover FOCUS(highlight/dim) effect
-4. Dark Mode
-5. Print as PDF?
-6. Aspect Ratio for reading. Define my own golden ratio.
-7. Language select
-8. MathJax equations max size
-9. Save last settings
-10. Figure card mouseover FOCUS effect(highlight/dim)
-11. Make a server with Python
-12. Deploy it on AWS
+3. Paragraph FOCUS on mouseover
+4. Paragraph FOCUS when center of the screen (vertically)
+5. Dark Mode
+6. Print as PDF?
+7. Aspect Ratio for reading. Define my own golden ratio.
+8. Language select
+9. MathJax equations max size
+10. Save last settings
+11. Figure card mouseover FOCUS effect(highlight/dim)
+12. Make a server with Python
+13. Deploy it on AWS
+14. Pop up/down video with key click
+15. Draw figures with plotly or figure out MathJax linear equation plot
 
 ## References
 
