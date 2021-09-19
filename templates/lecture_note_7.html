@@ -1,0 +1,97 @@
+{% extends "common/layout.html" %}
+
+{% block title %}An overview of key ideas{% endblock %}
+
+{% block main %}
+
+<main id="main-content">
+
+  <h1>Solving \(Ax=0\): pivot variables, special solutions</h1>
+  <p>
+    We have a definition for the column space and the nullspace of a matrix, but how do we compute these subspaces?
+  </p>
+
+  <h2>Computing the nullspace</h2>
+  <p>
+    The <i>nullspace</i> of a matrix \(A\) is made up of the vectors \(x\) for which \(Ax=0\). For example,
+    \[
+      \mymat{1&2&2&2\\2&4&6&8\\3&6&8&10}\mymat{x_1\\x_2\\x_3\\x_4}=\mymat{0\\0\\0}
+    \]
+    (Note that the columns of this matrix \(A\) are not independent) Our algorithm for computing the nullspace of this matrix uses the method of elimination, 
+    despite the fact that \(A\) is not invertible. We don't need to use an augmented matrix because the right side (the vector \(b\)) is 0 in this computation. 
+  </p>
+  <p>
+    The row operations used in the method of elimination don't change the solution to \(Ax=b\) so they don't change the nullspace. 
+    (They do affect the column space.)
+  </p>
+  <p>
+    The first step of elimination (\(E_{31}E_{21}\)) gives us:
+    \[
+      A = \mymat{\color{red}1&2&2&2\\2&4&6&8\\3&6&8&10} \rightarrow \mymat{\color{red}1&2&2&2\\0&0&2&4\\0&0&2&4}
+    \]
+    We don't find a pivot in the second column, so our next pivot is the 2 in the third column of the second row. 
+    The next step of elimination (\(E_{32}\)) gives us:
+    \[
+      \mymat{\color{red}1&2&2&2\\0&0&\color{red}2&4\\0&0&2&4} \rightarrow \mymat{\color{red}1&2&2&2\\0&0&\color{red}2&4\\0&0&0&0} = U
+    \]
+    The matrix \(U\) is in <i>echelon</i>(staircase) form. The third row is zero because row 3 was a linear combination of rows 1 and 2; it was eliminated.
+  </p>
+  <p>
+    The <i>rank</i> of a matrix \(A\) equals the number of pivots it has. In this example, the rank of \(A\) (and of \(U\)) is 2.
+  </p>
+
+  <h2>Special Solutions</h2>
+  <p>
+    Once we've found \(U\), we can use back-substitution to find the solutions \(x\) to the equation \(Ux=0\). In our example, columns 1 and 3 are 
+    <span class="nowrapi">pivot columns</span> containing pivots, and columns 2 and 4 are <span class="nowrapi">free columns</span>. 
+    We can assign any value to \(x_2\) and \(x_4\); we call these <span class="nowrapi">free variables</span>.
+  </p>
+  <p>
+    Suppose \(x_2=1, x_4=0\): \[ 2x_3 + 4x_4 = 0 \Rightarrow x_3 = 0 \]
+    and
+    \[ x_1 + 2x_2 + 2x_3 + 2x_4 = 0 \Rightarrow x_1 = -2 \]
+    In this case, one solution is:
+    \[ x=\mymat{-2\\1\\0\\0} \]
+    Any multiple of this vector is in the nullspace. 
+    Letting a different free variable equal 1 and setting the other free variables equal to 0 gives us other vectors in the nullspace. For example,
+    \[ x=\mymat{2\\0\\-2\\1} \]
+  </p>
+  <p>
+    The nullspace of \(A\) is the collection of all linear combinations of these "special solution" vectors.
+  </p>
+  <p>
+    The rank \(r\) of \(A\) equals the number of pivot columns, so the number of free columns is \(n-r\), the number of columns (variables) minus the number 
+    of pivot columns. This equals the number of special solution vectors and the dimension of the nullspace.
+  </p>
+
+  <h2>Reduced row echelon form</h2>
+  <p>
+    By continuing the elimination, we can convert \(U\) to a matrix \(R\), <span class="nowrapi">reduced row echelon form</span> (rref form), 
+    with pivots equal to <span style="color:red;">1</span> and <span style="color:blue;">zeroes</span> above and below pivots (this ties back to Gauss-Jordan Elimination mentioned in lecture 3).
+    <div class="large-math">
+    \[
+      U = \mymat{1&2&2&2\\0&0&2&4\\0&0&0&0} 
+      \rightarrow \mymat{1&2&0&-2\\0&0&2&4\\0&0&0&0} 
+      \rightarrow \mymat{
+        \color{red}1&2&\color{blue}0&-2 \\
+        \color{blue}0&0&\color{red}1&2 \\
+        \color{blue}0&0&\color{blue}0&0
+      } = R
+    \]
+    </div>
+  </p>
+
+  <h2>Editor's Note</h2>
+  <p>
+    By exchanging some columns, \(R\) can be rewritten with a copy of the identity matrix \(I\) in the upper left corner, 
+    possibly followed by some free columns \(F\) on the right. 
+    If some rows \(A\) are linearly dependent, the lower rows of the matrix \(R\) will be filled with zeroes:
+    \[ R = \mymat{I&F\\0&0} \]
+  </p>
+  <p>
+    If <span class="nowrapi">nullspace matrix</span> \(N=\mymat{-F\\I}\), then \(RN=0\). The columns of \(N\) are the special solutions.
+  </p>
+
+</main>
+
+{% endblock %}
