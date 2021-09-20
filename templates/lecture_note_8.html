@@ -1,0 +1,155 @@
+{% extends "common/layout.html" %}
+
+{% block title %}An overview of key ideas{% endblock %}
+
+{% block main %}
+
+<main id="main-content">
+  <h1>Solving \(Ax=b\): row reduced form \(R\)</h1>
+  <p>
+    When does \(Ax=b\) have solutions \(x\), and how can we describe those solutions?
+  </p>
+
+  <h2>Solvability conditions on \(b\)</h2>
+  <p>
+    We again use the example:
+    \[ A = \mymat{1&2&2&2\\2&4&6&8\\3&6&8&10} \]
+    The third row of \(A\) is the sum of its first and seconds rows, so we know that if \(Ax=b\), the third component of \(b\) equals the sum of its first and 
+    second components. If \(b\) does not satisfy \(b_3=b_1+b_2\), the system has no solution.
+  </p>
+
+  <figure>
+    <blockquote>
+      <p>If a combination of the rows of \(A\) gives the zero row, then the same combination of the entries of \(b\) must equal zero.</p>
+    </blockquote>
+  </figure>
+
+  <p>
+    One way to find out whether \(Ax=b\) is solvable is to use elimination on the augmented matrix. If a row of \(A\) is completely eliminated, so is the 
+    corresponding entry in \(b\). In our example, row 3 of \(A\) is completely eliminated:
+    \[
+      \left[\begin{array}{rrrr|r}
+        1&2&2&2&b_1 \\
+        2&4&6&8&b_2 \\
+        3&6&8&10&b_3
+      \end{array}\right]
+      \rightarrow \cdots \rightarrow
+      \left[\begin{array}{rrrr|r}
+        1&2&2&2&b_1 \\
+        0&0&2&4&b_2-2b_1 \\
+        0&0&0&0&b_3-b_2-b_1
+      \end{array}\right]
+    \]
+    If \(Ax=b\) has a solution, then \(b_3-b_2-b_1=0\). For example, we could choose \(b=\mymat{1\\5\\6}\).
+  </p>
+  <p>
+    From an earlier lecture, we know that \(Ax=b\) is solvable exactly when \(b\) is in the column space \(C(A)\). We have these two conditions on b; 
+    in fact, they are equivalent.
+  </p>
+
+  <h2>Complete solution</h2>
+  <p>
+    In order to find all solutions to \(Ax=b\), we first check that the equation is solvable, then find a particular solution. 
+    We get the complete solution of the equation by adding the particular solution to all the vectors in the nullspace.
+  </p>
+
+  <h3>A particular solution</h3>
+  <p>
+    One way to find a particular solution to the equation \(Ax=b\) is to set all free variables to zero, then solve for the pivot variables. 
+    For our example matrix \(A\), we let \(x_2=x_4=0\) to get the system of equations:
+    \[
+      \mysys{
+        x_1+2x_3 &= 1 \\
+        2x_3 &= 3
+      }
+    \]
+    Our particular solution is:
+    \[ x_p = \mymat{-2\\0\\3/2\\0} \]
+  </p>
+
+  <h3>Combined with the nullspace</h3>
+  <p>
+    The general solution to \(Ax=b\) is given by \(x_{complete} = x_p+x_n\), where \(x_n\) is a generic vector in the nullspace. 
+    To see this, we add \(Ax_p=b\) to \(Ax_n=0\) and get \(A(x_p+x_n)=b\) for every vector \(x_n\) in the nullspace.
+  </p>
+  <p>
+    Last lecture we learned that the nullspace of \(A\) is the collection of all combinations of the special solutions \(\mymat{-2\\1\\0\\0}\) and 
+    \(\mymat{2\\0\\-2\\1}\). So the complete solution to the equation \(Ax=\mymat{1\\5\\6}\) is:
+    \[
+      x_{complete} = \mymat{-2\\0\\3/2\\0} + c_1\mymat{-2\\1\\0\\0} + c_2\mymat{2\\0\\-2\\1}
+    \]
+    where \(c_1\) and \(c_2\) are real numbers.
+  </p>
+  <p>
+    The nullspace of \(A\) is a two dimensional subspace of \(\mathbb{R}^4\), and the solutions to the equation \(Ax=b\) form a plane parallel to that 
+    through \(x_p = \mymat{-2\\0\\3/2\\0}\).
+  </p>
+
+  <h2>Rank</h2>
+  <p>
+    The rank of a matrix equals the number of pivots of that matrix. If \(A\) is an \(m\) by \(n\) matrix of rank \(r\), 
+    we know \(r \leq m\) and \(r \leq n\).
+  </p>
+
+  <h3>Full column rank</h3>
+  <p>
+    If \(r=n\), then (from the previous <a href="./7">lecture</a> we know) the nullspace has dimension \(n-r=0\) and contains only the zero vector. 
+    There are no free variables or special solutions.
+  </p>
+  <p>
+    If \(Ax=b\) has a solution, it is unique; there is either 0 or 1 solution. Examples like this, in which the columns are independent, are common in 
+    applications.
+  </p>
+  <p>
+    We know \(r \leq m\), so if \(r=n\), the number of columns of the matrix is less than or equal to the number of rows (\(n \leq m\)). 
+    The row reduced echelon form of the matrix will look like \(R=\mymat{I\\0}\).
+  </p>
+  <figure>
+    <blockquote>
+      <p>For any vector \(b\) in \(\mathbb{R}^m\) that is not a linear combination of the columns of \(A\), there is no solution to \(Ax=b\).</p>
+    </blockquote>
+  </figure>
+
+  <h3>Full row rank</h3>
+  <p>
+    If \(r = m\), then the reduced matrix \(R=\mymat{I&F}\) has no rows of zeros and so there are no requirements for the entries of \(b\) to satisfy. 
+    The equation \(Ax=b\) is solvable for every \(b\). There are \(n-r=n-m\) free variables, so there are \(n-m\) special solutions to \(Ax=0\).
+  </p>
+
+  <h3>Full row and column rank</h3>
+  <p>
+    If \(r=m=n\), then \(A\) is an invertible square matrix and \(R\) is the identity matrix. The nullspace has 
+    dimension zero, and \(Ax=b\) has a unique solution for every \(b\) in \(\mathbb{R}^m\).
+  </p>
+
+  <h3>Summary on Rank</h3>
+  <p>
+    If \(R\) is in row reduced form with pivot columns first (rref), the table below summarizes our results.
+  </p>
+  <table>
+    <tr>
+      <th></th>
+      <th>\(r = m = n\)</th>
+      <th>\(r = n < m\)</th>
+      <th>\(r = m < n\)</th>
+      <th>\(r < m, r < n\)</th>
+    </tr>
+    <tr>
+      <td>\(R\)</td>
+      <td>\(I\)</td>
+      <td>\(\mymat{I\\0}\)</td>
+      <td>\(\mymat{I&F}\)</td>
+      <td>\(\mymat{I&F\\0&0}\)</td>
+    </tr>
+    <tr>
+      <td># of solutions</td>
+      <td>1</td>
+      <td>0 or 1</td>
+      <td>infinite</td>
+      <td>0 or infinite</td>
+    </tr>
+  </table>
+
+</main>
+
+{% endblock %}
