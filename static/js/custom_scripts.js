@@ -180,6 +180,26 @@ function jumpDown() {
   document.documentElement.scrollTop = document.documentElement.scrollTop + jumpValue - fontSize*2;
 }
 
+function rgba(r,g,b,a) {
+  return 'rgba(' + [(r||0),(g||0),(b||0),(a||0)].join(',') + ')';
+}
+
+var highlightToggle = false;
+
+function keywordHighlight() {
+  highlightToggle = !highlightToggle;
+  var keywords = document.getElementsByClassName('keyword');
+  if (highlightToggle) {
+    for (var i=0;i<keywords.length;i++) {
+      keywords[i].style.backgroundColor=rgba(255,255,0,0.75);
+    }
+  } else {
+    for (var i=0;i<keywords.length;i++) {
+      keywords[i].style.backgroundColor='';
+    }
+  }
+}
+
 function navigation(evt){
   key = evt.keyCode;
   console.log(key);
@@ -196,6 +216,8 @@ function navigation(evt){
     jumpUp();
   } else if (key==68) {
     jumpDown();
+  } else if (key==72) {
+    keywordHighlight();
   }
 }
 

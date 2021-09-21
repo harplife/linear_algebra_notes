@@ -1,0 +1,23 @@
+{% extends "common/layout.html" %}
+
+{% block title %}An overview of key ideas{% endblock %}
+
+{% block main %}
+
+<main id="main-content">
+
+  <h1>Independence, basis, and dimension</h1>
+  <p>
+      What does it mean for vectors to be independent? How does the idea of independence help us describe subspaces like the nullspace?
+  </p>
+
+  <h2>Linear Independence</h2>
+  <p>
+    Suppose \(A\) is an \(m\) by \(n\) matrix with \(m < n\), meaning \(Ax=b\) has more unknowns than equations. 
+    Matrix \(A\) has at least one free variable, so there are nonzero solutions to \(Ax=0\). A combination of the columns is zero, 
+    so the columns of this \(A\) are <i>dependent</i>.
+  </p>
+
+</main>
+
+{% endblock %}

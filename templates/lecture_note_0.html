@@ -30,7 +30,7 @@
     The collection of all multiples of \(u\) forms a line through the origin.<br>
     The collection of all multiples of \(v\) forms another line.<br>
     The collection of all combinations of \(u\) and \(v\) forms a plane.<br>
-    Taking <span class="nowrapi">all combinations</span> of some vectors creates a <i>subspace</i>.<br>
+    Taking <span class="nowrapi keyword">all combinations</span> of some vectors creates a <i class='keyword'>subspace</i>.<br>
   </p>
   <p>
     We could continue like this, or we can use a matrix to add in all multiples of \(w\).
@@ -113,7 +113,7 @@
       Cx = \mymat{1&0&-1\\-1&1&0\\0&-1&1}\mymat{x_1\\x_2\\x_3}
       = \mymat{x_1-x_3\\x_2-x_1\\x_3-x_2}
     \]
-    and our system of three equations in three unknowns becomes <i>circular</i>.
+    and our system of three equations in three unknowns becomes <i class='keyword'>circular</i>.
   </p>
   <p>
     Where before \(Ax = 0\) implied \(x = 0\), 
@@ -142,7 +142,7 @@
   <h2>Subspaces</h2>
   <p>
     Geometrically, the columns of \(C\) lie in the same plane 
-    (they are <i>dependent</i>; the columns of A are <i>independent</i>). 
+    (they are <i class='keyword'>dependent</i>; the columns of A are <i class='keyword'>independent</i>). 
     There are many vectors in \(\mathbb{R}^3\) which do not lie in that plane. 
     Those vectors cannot be written as a linear combination of the columns of \(C\) 
     and so correspond to values of \(b\) for which \(Cx = b\) has no solution \(x\). 
@@ -164,19 +164,19 @@
     \]
     we get the entire space \(\mathbb{R}^3\); 
     the equation \(Ax = b\) has a solution for every b in \(\mathbb{R}^3\). 
-    We say that \(u\), \(v\) and \(w\) form a <i>basis</i> for \(\mathbb{R}^3\).
+    We say that \(u\), \(v\) and \(w\) form a <i class='keyword'>basis</i> for \(\mathbb{R}^3\).
   </p>
   <p>
-    A <i>basis</i> is a collection of n independent vectors in \(\mathbb{R}^n\).<br>
+    A <i class='keyword'>basis</i> is a collection of n independent vectors in \(\mathbb{R}^n\).<br>
     Equivalently, a basis is a collection of \(n\) vectors whose 
     combinations cover the whole space.<br>
     Or, a collection of vectors forms a basis whenever a matrix 
     which has those vectors as its columns is invertible.
   </p>
   <p>
-    A <span class="nowrapi">vector space</span> is a collection of 
+    A <span class="nowrapi keyword">vector space</span> is a collection of 
     vectors that is closed under linear combinations.<br>
-    A <i>subspace</i> is a vector space inside another vector space; 
+    A <i class='keyword'>subspace</i> is a vector space inside another vector space; 
     a plane through the origin in \(\mathbb{R}^3\) is an example of a subspace. 
     A subspace could be equal to the space it's contained in; 
     the smallest subspace contains only the zero vector.

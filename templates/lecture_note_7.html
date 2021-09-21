@@ -13,7 +13,7 @@
 
   <h2>Computing the nullspace</h2>
   <p>
-    The <i>nullspace</i> of a matrix \(A\) is made up of the vectors \(x\) for which \(Ax=0\). For example,
+    The <i class='keyword'>nullspace</i> of a matrix \(A\) is made up of the vectors \(x\) for which \(Ax=0\). For example,
     \[
       \mymat{1&2&2&2\\2&4&6&8\\3&6&8&10}\mymat{x_1\\x_2\\x_3\\x_4}=\mymat{0\\0\\0}
     \]
@@ -34,17 +34,17 @@
     \[
       \mymat{\color{red}1&2&2&2\\0&0&\color{red}2&4\\0&0&2&4} \rightarrow \mymat{\color{red}1&2&2&2\\0&0&\color{red}2&4\\0&0&0&0} = U
     \]
-    The matrix \(U\) is in <i>echelon</i>(staircase) form. The third row is zero because row 3 was a linear combination of rows 1 and 2; it was eliminated.
+    The matrix \(U\) is in <i class='keyword'>echelon</i>(staircase) form. The third row is zero because row 3 was a linear combination of rows 1 and 2; it was eliminated.
   </p>
   <p>
-    The <i>rank</i> of a matrix \(A\) equals the number of pivots it has. In this example, the rank of \(A\) (and of \(U\)) is 2.
+    The <i class='keyword'>rank</i> of a matrix \(A\) equals the number of pivots it has. In this example, the rank of \(A\) (and of \(U\)) is 2.
   </p>
 
   <h2>Special Solutions</h2>
   <p>
     Once we've found \(U\), we can use back-substitution to find the solutions \(x\) to the equation \(Ux=0\). In our example, columns 1 and 3 are 
-    <span class="nowrapi">pivot columns</span> containing pivots, and columns 2 and 4 are <span class="nowrapi">free columns</span>. 
-    We can assign any value to \(x_2\) and \(x_4\); we call these <span class="nowrapi">free variables</span>.
+    <span class="nowrapi keyword">pivot columns</span> containing pivots, and columns 2 and 4 are <span class="nowrapi keyword">free columns</span>. 
+    We can assign any value to \(x_2\) and \(x_4\); we call these <span class="nowrapi keyword">free variables</span>.
   </p>
   <p>
     Suppose \(x_2=1, x_4=0\): \[ 2x_3 + 4x_4 = 0 \Rightarrow x_3 = 0 \]
@@ -66,7 +66,7 @@
 
   <h2>Reduced row echelon form</h2>
   <p>
-    By continuing the elimination, we can convert \(U\) to a matrix \(R\), <span class="nowrapi">reduced row echelon form</span> (rref form), 
+    By continuing the elimination, we can convert \(U\) to a matrix \(R\), <span class="nowrapi keyword">reduced row echelon form</span> (rref form), 
     with pivots equal to <span style="color:red;">1</span> and <span style="color:blue;">zeroes</span> above and below pivots (this ties back to Gauss-Jordan Elimination mentioned in lecture 3).
     <div class="large-math">
     \[
@@ -88,7 +88,7 @@
     \[ R = \mymat{I&F\\0&0} \]
   </p>
   <p>
-    If <span class="nowrapi">nullspace matrix</span> \(N=\mymat{-F\\I}\), then \(RN=0\). The columns of \(N\) are the special solutions.
+    If <span class="nowrapi keyword">nullspace matrix</span> \(N=\mymat{-F\\I}\), then \(RN=0\). The columns of \(N\) are the special solutions.
   </p>
   <p>
     Editor's Note: this section will make more sense on the next <a href="./8">lecture</a>.

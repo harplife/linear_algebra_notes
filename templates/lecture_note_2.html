@@ -9,7 +9,7 @@
 
   <h2>Method of Elimination (Gaussian Elimination)</h2>
   <p>
-    <i>Elimination</i> is the technique most commonly used by computer software to solve 
+    <i class='keyword'>Elimination</i> is the technique most commonly used by computer software to solve 
     systems of linear equations. It finds a solution to \(Ax=b\) 
     whenever the matrix \(A\) is invertible.
   </p>
@@ -19,11 +19,11 @@
   </p>
   <p>
     The number 1 in the upper left corner of \(A\) is called the 
-    <span class="nowrapi" style="color:red">first pivot</span>. 
+    <span class="nowrapi keyword" style="color:red">first pivot</span>. 
     We recopy the first row, then multiply the numbers in it by an appropriate value 
     (in this case 3) and subtract those values from the numbers in the second row. 
     The first number in the second row becomes 0. We have thus 
-    <span class="nowrapi">eliminated</span> the 3 in row 2 column 1.
+    <span class="nowrapi keyword">eliminated</span> the 3 in row 2 column 1.
     \[
       A=\mymat{\color{red}1&2&1\\\color{blue}3&8&1\\0&4&1}
       \rightarrow \mymat{\color{red}1&2&1\\\color{blue}0&2&-2\\0&4&1}
@@ -37,10 +37,10 @@
       \mymat{\color{red}1&2&1\\\color{blue}0&2&-2\\\color{blue}0&4&1}
     \]
   <p>
-    The <span class="nowrapi" style="color:red">second pivot</span> is the value 2 which now appears 
+    The <span class="nowrapi keyword" style="color:red">second pivot</span> is the value 2 which now appears 
     in row 2 column 2. We find a multiplier (in this case 2) by which we multiply 
     the second row to eliminate the 4 in row 3 column 2. 
-    The <span class="nowrapi" style="color:red">third pivot</span> is then the 5 now in row 3 column 3.
+    The <span class="nowrapi keyword" style="color:red">third pivot</span> is then the 5 now in row 3 column 3.
     \[
       \mymat{
         \color{red}1&2&1\\
@@ -57,7 +57,7 @@
   </p>
   <p>
     We started with an invertible matrix \(A\) and ended with an 
-    <span class="nowrapi">upper triangular</span> matrix \(U\); 
+    <span class="nowrapi keyword">upper triangular</span> matrix \(U\); 
     the lower left portion of \(U\) is filled with <span style="color:blue">zeros</span>. 
     <span style="color:red">Pivots 1,2,5</span> are on the diagonal of \(U\).
     <div class="large-math">
@@ -81,7 +81,7 @@
   </p>
   <p>
     When calculating by hand we can do this efficiently by 
-    <span class="nowrapi">augmenting</span> the Matrix \(A\), appending the vector \(b\) 
+    <span class="nowrapi keyword">augmenting</span> the Matrix \(A\), appending the vector \(b\) 
     as fourth or final column.
     <div class="large-math">
     \[
@@ -107,7 +107,7 @@
   </p>
   <p>
     The equation \(Ux = c\) is easy to solve by 
-    <span class="nowrapi">back substitution</span>. <br>
+    <span class="nowrapi keyword">back substitution</span>. <br>
     In our example, we start with the bottom row.
     \[
       \mysys{
@@ -140,7 +140,7 @@
     \]
   </p>
   <p>
-    The <span class="nowrapi">determinant</span> of \(U\) is the product of the pivots. 
+    The <span class="nowrapi keyword">determinant</span> of \(U\) is the product of the pivots. 
     We will see this again (in the later chapter).<br>
     Pivots may not be 0. If there is a zero in the pivot position, 
     we must exchange that row with one below to get a non-zero value in the pivot position. 
@@ -165,7 +165,7 @@
       \mymat{1&2&1\\3&8&1\\0&4&1}
       = \mymat{1&2&1\\0&2&-2\\0&4&1}
     \]
-    The <span class="nowrapi">elimination matrix</span> used to eliminate the entry 
+    The <span class="nowrapi keyword">elimination matrix</span> used to eliminate the entry 
     in row \(m\) column \(n\) is denoted \(E_{mn}\).<br>
     The calculation above took us from \(A\) to \(E_{21}A\).<br>
     The three elimination steps leading to \(U\) were \(E_{32}(E_{31}(E_{21}A))\), 
@@ -173,18 +173,18 @@
     Thus \(E_{32}(E_{21}A)=U\).
   </p>
   <p>
-    Matrix multiplication is <span class="nowrapi">associative</span>, so we can also 
+    Matrix multiplication is <span class="nowrapi keyword">associative</span>, so we can also 
     write \((E_{32}E_{21})A=U\).
   </p>
   <p>
     The product \(E_{32}E_{21}\) tells us how to get from \(A\) to \(U\). 
-    The <span class="nowrapi">inverse</span> of the matrix \(E_{32}E_{21}\) tells us 
+    The <span class="nowrapi keyword">inverse</span> of the matrix \(E_{32}E_{21}\) tells us 
     how to get from \(U\) to \(A\).<br>
     If we solve \(Ux=EAx=Eb\), then it is also true that \(Ax=b\). 
     This is why the method of elimination works; all steps can be reversed.
   </p>
   <p>
-    A <span class="nowrapi">permutation matrix</span> (denoted by \(P\)) 
+    A <span class="nowrapi keyword">permutation matrix</span> (denoted by \(P\)) 
     exchanges two rows of a matrix.<br>
     For example,
     <div class="large-math">
@@ -203,7 +203,7 @@
     a permutation matrix.
   </p>
   <p>
-    Note that matrix multiplication is not <span class="nowrapi">commutative</span>.
+    Note that matrix multiplication is not <span class="nowrapi keyword">commutative</span>.
     \[PA \not= AP\]
   </p>
 

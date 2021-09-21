@@ -32,7 +32,7 @@
     \]
   </p>
   <p>
-    A matrix \(A\) is <i>symmetric</i> if \(A^T=A\). Given any matrix \(R\) 
+    A matrix \(A\) is <i class='keyword'>symmetric</i> if \(A^T=A\). Given any matrix \(R\) 
     (not necessarily square), the product \(R^TR\) is always symmetric, 
     because \((R^TR)^T = R^T(R^T)^T = R^TR\). Note that \((R^T)^T=R\).
   </p>
@@ -40,8 +40,8 @@
   <h2>Vector Spaces</h2>
   <p>
     We can add vectors and multiply them by numbers, which means we can discuss 
-    <span class="nowrapi">linear combinations</span> of vectors. These combinations 
-    follow the rules of a <span class="nowrapi">vector space</span>.
+    <span class="nowrapi keyword">linear combinations</span> of vectors. These combinations 
+    follow the rules of a <span class="nowrapi keyword">vector space</span>.
   </p>
   <p>
     One such vector space is \(\mathbb{R}^2\), the set of all vectors with exactly two 
@@ -57,13 +57,13 @@
 
   <h2>Closure</h2>
   <p>
-    The collection of vectors with exactly two <i>positive</i> real valued components: 
+    The collection of vectors with exactly two <i class='keyword'>positive</i> real valued components: 
     \[
       S = \{ (x,y) \in \mathbb{R}^2, x>0, y>0 \}
     \]
-    is <i>not</i> a vector space. The sum of any two vectors in that collection is again 
+    is <i class='keyword'>not</i> a vector space. The sum of any two vectors in that collection is again 
     in the collection, but multiplying any vector by, say, -5, gives a vector that's not 
-    in the collection. We say that this collection of positive vectors is <i>closed</i> 
+    in the collection. We say that this collection of positive vectors is <i class='keyword'>closed</i> 
     under addition but not under multiplication.<br>
     For example with vector \(a=\mymat{1\\1}\),
     \[
@@ -77,18 +77,18 @@
     If a collection of vectors is closed under linear combinations 
     (i.e. under addition and multiplication by any real numbers), and if multiplication 
     and addition behave in a reasonable way, then we call that collection a 
-    <span class="nowrapi">vector space</span>.
+    <span class="nowrapi keyword">vector space</span>.
   </p>
 
   <h2>Subspaces</h2>
   <p>
     A vector space that is contained inside of another vector space is called 
-    <i>subspace</i> of that space. For example, take any non-zero vector \(v\) in 
+    <i class='keyword'>subspace</i> of that space. For example, take any non-zero vector \(v\) in 
     \(\mathbb{R}^2\). This collection of vectors describes a line through 
     \(\mymat{0\\0}\) in \(\mathbb{R}^2\) and is closed under addition.
   </p>
   <p>
-    A line in \(\mathbb{R}^2\) that does not pass through the origin is <i>not</i> a 
+    A line in \(\mathbb{R}^2\) that does not pass through the origin is <i class='keyword'>not</i> a 
     subspace of \(\mathbb{R}^2\). Multiplying any vector on that line by 0 gives 
     the zero vector, which does not lie on the line. Every subspace must contain the 
     zero vector because vector spaces are closed under multiplication.
@@ -115,7 +115,7 @@
   <p>
     Given a matrix \(A\) with columns in \(\mathbb{R}^3\), these columns and all their 
     linear combinations form a subspace of \(\mathbb{R}^3\). This is the 
-    <span class="nowrapi">column space</span> \(C(A)\).
+    <span class="nowrapi keyword">column space</span> \(C(A)\).
   </p>
   <p>
     If \(A=\mymat{1&3\\2&3\\4&1}\), the column space of \(A\) is the plane through 
