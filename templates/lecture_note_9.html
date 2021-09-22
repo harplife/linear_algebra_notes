@@ -15,8 +15,146 @@
   <p>
     Suppose \(A\) is an \(m\) by \(n\) matrix with \(m < n\), meaning \(Ax=b\) has more unknowns than equations. 
     Matrix \(A\) has at least one free variable, so there are nonzero solutions to \(Ax=0\). A combination of the columns is zero, 
-    so the columns of this \(A\) are <i>dependent</i>.
+    so the columns of this \(A\) are <i class="keyword">dependent</i>.
   </p>
+  <p>
+    We say vectors \(x_1,x_2, \dots, x_n\) are <span class="nowrapi keyword">linearly independent</span> (or just independent) if 
+    \(c_1x_1+c_2x_2+ \cdots +c_nx_n=0\) only when \(c_1,c_2, \dots, c_n\) are all 0. When those vectors are the columns of \(A\), 
+    the only solution to \(Ax=0\) is \(x=0\).
+  </p>
+  <p>
+    Two vectors are independent if they do not lie on the same line. Three vectors are independent if they do not lie in the same plane. 
+    Thinking of \(Ax\) as a linear combination of the column vectors of \(A\), we see that the column vectors of \(A\) are independent exactly when 
+    the nullspace of \(A\) contains only the zero vector.
+  </p>
+  <figure>
+    <blockquote>
+      <ul>
+        <li>If the columns of \(A\) are independent, then all columns are pivot columns, the rank of \(A\) is \(n\), and there are no free variables.</li>
+        <li>If the columns of \(A\) are dependent, then the rank of \(A\) is less than \(n\) and there are free variables.</li>
+      </ul>
+    </blockquote>
+  </figure>
+
+  <h2>Spanning a space</h2>
+  <p>
+    Vectors \(v_1,v_2,\dots,v_k\) <i class="keyword">span</i> a space when the space consists of all combinations of those vectors. 
+    For example, the column vectors of \(A\) span the column space of \(A\).
+  </p>
+  <p>
+    If vectors span a space \(S\), then \(S\) is the smallest space containing those vectors.
+  </p>
+  
+  <h2>Basis and dimension</h2>
+  <p>
+    A <i class="keyword">basis</i> for a vector space is a sequence of vectors \(v_1,v_2,\dots,v_d\) with two properties:
+    <ul>
+      <li>vectors are independent</li>
+      <li>vectors span the vector space</li>
+    </ul>
+  The basis of a space tells use everything we need to know about that space.
+  </p>
+  <p>
+    For example, one basis for \(\mathbb{R}^3\) is: \[\ \begin{Bmatrix} \mymat{1\\0\\0\\},\mymat{0\\1\\0\\},\mymat{0\\0\\1\\} \end{Bmatrix} \]
+    These are independent because:
+    \[
+      c_1\mymat{1\\0\\0} + c_2\mymat{0\\1\\0} + c_3\mymat{0\\0\\1} = 0
+    \]
+    which is only possible when \(c_1=c_2=c_3=0\). These vectors span \(\mathbb{R}^3\). <br>
+    (This is actually an example of <span class="nowrapi keyword">standard basis</span>, 
+    the set of vectors whose components are all zero, except one that equals 1. 
+    More at <a href="https://en.wikipedia.org/wiki/Standard_basis">wiki</a>.)
+  </p>
+  <p>
+    An example of vectors that do <b>not</b> form a basis for \(\mathbb{R}^3\): \[\ \begin{Bmatrix} \mymat{1\\1\\2\\},\mymat{2\\2\\5\\},\mymat{3\\3\\8\\} \end{Bmatrix} \]
+    These vectors do not form a basis because these are the column vectors that has two identical rows. The three vectors are not linearly independent.
+  </p>
+  <figure>
+    <blockquote>
+      <p>
+        In general, \(n\) vectors in \(\mathbb{R}^3\) form a basis if they are the column vectors of an invertible matrix.
+      </p>
+    </blockquote>
+  </figure>
+
+  <h3>Basis for a subspace</h3>
+  <p>
+    Given a space, every basis for that space has the same number of vectors; that number is the <i class="keyword">dimension</i> of the space. 
+    So there are exactly \(n\) vectors in every basis for \(\mathbb{R}^n\).
+  </p>
+
+  <h2>Bases of a column space and nullspace</h2>
+  <p>
+    Suppose:
+    \[
+      A = \mymat{1&2&3&1\\1&1&2&1\\1&2&3&1}
+    \]
+    By definition, the four column vectors of \(A\) span the column space of \(A\). The third and fourth column vectors are dependent on the first and second, 
+    and the first two columns are independent. Therefore, the first two column vectors are the pivot columns, which form a basis for the column space \(C(A)\). 
+    The matrix has rank 2. In fact, for any matrix \(A\), we can say:
+  </p>
+  <figure>
+    <blockquote>
+      <p>rank(\(A\)) = number of pivot columns of \(A\) = dimension of \(C(A)\)</p>
+    </blockquote>
+  </figure>
+  <p>
+    The column vectors of \(A\) are not independent, so the nullspace \(N(A)\) contains more than just the zero vector. 
+    Because the third column is the sum of the first two, we know that the vector \(\mymat{-1\\-1\\1\\0}\) is in the nullspace. 
+    Similarly, \(\mymat{-1\\0\\0\\-1}\) is also in \(N(A)\). There are the two special solutions to \(Ax=0\).
+  </p>
+
+  <h2>Editor's Note</h2>
+  <p>
+    In "bases of a column space and nullspace" section, Professor Strang notes that:
+  </p>
+  <figure>
+    <blockquote>
+      <p>Matrices have a rank but not a dimension. Subspaces have a dimension but not a rank.</p>
+    </blockquote>
+  </figure>
+  <p>
+    I'm not quite sure what the significance of that statement is, and so I looked up the difference between rank and dimension. 
+    So far, a mildly satisfying answer came from Quora:
+  </p>
+  <figure>
+    <blockquote>
+      <p>
+        There is no concept of a dimension of a matrix. The term "dimension" is always used to denote the number of elements in a basis of a vector space.
+        <br><br>
+        Row rank of a matrix is defined as the dimension of the subspace (of an appropriate vector space) generated by its row vectors, and similarly, 
+        its column rank is the dimension of the subspace generated by its column vectors. For matrices over a field, these two types of rank have the same 
+        value which is termed as <span class="nowrapi keyword">the rank of the matrix</span>. However, it is never called the dimension of the matrix.
+      </p>
+    </blockquote>
+  </figure>
+  <p>
+    I still can't get my head around the fact that a matrix does not have a dimension. In my head, I think of a matrix as a collection of vector spaces, 
+    and thus it should be a space. I mean, the fact that rank(\(A\)) = dimension of \(C(A)\) makes it seem like rank and dimension are the same thing.
+  </p>
+  <p>
+    Another mildly satisfying answer came from StackExchange:
+  </p>
+  <figure>
+    <blockquote>
+      <p>An \(n\) x \(n\) matrix represents a linear transformation from \(\mathbb{R}^n\) to \(\mathbb{R}^n\).</p>
+    </blockquote>
+  </figure>
+  <p>
+    With that in mind, wikipedia entry on Matrix states that matrices represent <span class="nowrapi keyword">linear maps</span>, 
+    and allow explicit computations in linear algebra. This led to the entry on Linear Map, which states that a linear map is a mapping \(f\) 
+    between vector spaces that preserves the operations of vector addition and scalar multiplication.
+  </p>
+  <p>
+    The best I can conclude from all that, is that a matrix is like.. a description of a space, but not the space itself. 
+    I'll come back to this when I figure this out. Just in case, references below:
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Rank_(linear_algebra)">Rank</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Dimension_(vector_space)">Dimension</a></li>
+      <li><a href="https://math.mit.edu/~gs/linearalgebra/linearalgebra5_3-5.pdf">Chapter 3.5 of Introduction to Linear Algebra</a></li>
+    </ul>
+  </p>
+
 
 </main>
 
